@@ -6,7 +6,7 @@ from wtforms import PasswordField
 import requests
 
 app = Flask(__name__)
-app.config["DEBUG"] = True  
+app.config["DEBUG"] = True      
 app.config['MONGODB_SETTINGS'] = { 'db' : 'books' }
 app.config['SECRET_KEY'] = 'secretkey'
 db = MongoEngine(app)
