@@ -1,6 +1,6 @@
 .jumbotron {
 
-    background-color: white;
+    background-color: rgb(155,221,255);
     text-align: center;
     text-decoration-line: underline;
 }
@@ -11,6 +11,20 @@
 
 img {
     align-content: center;
+}
+
+.left-side {
+    float: left;
+    width: 50%;
+}
+
+.right-side {
+    float: right;
+    width: 50%;
+}
+
+.page-header {
+    text-align: center;
 }
 
 #wrapper {
