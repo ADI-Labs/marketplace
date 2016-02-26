@@ -17,21 +17,29 @@
 
 			<h2>Login</h2>
 				<form action="" method="POST">
-				  {{ form.csrf_token }}
+				  <!-- {{ form.csrf_token }} -->
 					  <div>
-					    {{ form.name.label}}
-					    {{ form.name }}
+					    <!-- {{ form.username.label}} -->
+					    <!-- {{ form.username }} -->
 					  </div>
 					  <div>
-					    {{ form.password.label }}
-					    {{ form.password }}
+					    <!-- {{ form.password.label }} -->
+					    <!-- {{ form.password }} -->
 					  </div>
-				  <input type="usbmit" value="Login">
+				  <input type="submit" value="Login">
 				</form>
 
           </div>
       </div>
   </div>
+
+<!-- 
+<script src="{{ url_for('static', filename='js/vendor/jquery.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/foundation.js') }}"></script>
+  <script>
+    $(document).foundation();
+  </script> 
+-->
 
 </body>
 </html>
