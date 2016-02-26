@@ -1,0 +1,484 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"h",
+				"html	html"
+			],
+			[
+				"false",
+				"fs.appendFileSync(path, data, options);"
+			],
+			[
+				"scr",
+				"script	Tag"
+			],
+			[
+				"li",
+				"li	Tag"
+			],
+			[
+				"de",
+				"def	Function"
+			],
+			[
+				"def",
+				"defs	Method"
+			],
+			[
+				"$",
+				"angular: $document"
+			],
+			[
+				"ang",
+				"angular	AngularJS"
+			],
+			[
+				"an",
+				"andSelf	.andSelf()"
+			],
+			[
+				"src",
+				"src"
+			],
+			[
+				"ion",
+				"ion-header-bar"
+			],
+			[
+				"ti",
+				"title"
+			],
+			[
+				"ion-side",
+				"ion-side-menu-content"
+			],
+			[
+				"pa",
+				"padding-top"
+			],
+			[
+				"mar",
+				"margin-bottom"
+			],
+			[
+				"bac",
+				"background-color"
+			],
+			[
+				"si",
+				"font-size"
+			],
+			[
+				"fun",
+				"function"
+			],
+			[
+				"fu",
+				"function"
+			],
+			[
+				"siz",
+				"background-size"
+			],
+			[
+				"co",
+				"color"
+			],
+			[
+				"font",
+				"font-size"
+			],
+			[
+				"he",
+				"head	Tag"
+			],
+			[
+				"l",
+				"link	Tag"
+			],
+			[
+				"a",
+				"abstract"
+			],
+			[
+				"get",
+				"getTotalCompensation"
+			],
+			[
+				"pu",
+				"public"
+			],
+			[
+				"ma",
+				"Manager"
+			],
+			[
+				"map",
+				"map"
+			],
+			[
+				"M",
+				"Marker"
+			],
+			[
+				"st",
+				"style	Tag"
+			],
+			[
+				"n",
+				"no-repeat"
+			],
+			[
+				"paddi",
+				"padding-top"
+			],
+			[
+				"padd",
+				"padding-top"
+			],
+			[
+				"d",
+				"div	Tag"
+			],
+			[
+				"al",
+				"text-align"
+			],
+			[
+				"iamge",
+				"border-image-width"
+			],
+			[
+				"wid",
+				"width"
+			],
+			[
+				"back",
+				"background-color"
+			],
+			[
+				"s",
+				"src"
+			],
+			[
+				"margi",
+				"margin"
+			],
+			[
+				"CU",
+				"CUShares"
+			],
+			[
+				"pr",
+				"println"
+			],
+			[
+				"i",
+				"input"
+			],
+			[
+				"in",
+				"in	interface"
+			],
+			[
+				"H",
+				"H2	Tag"
+			],
+			[
+				"img",
+				"background-image"
+			],
+			[
+				"ba",
+				"background-color"
+			],
+			[
+				"hea",
+				"header	Tag"
+			],
+			[
+				"j",
+				"jpg"
+			],
+			[
+				"block",
+				"inline-block"
+			],
+			[
+				"bor",
+				"border-color"
+			],
+			[
+				"bo",
+				"border-width"
+			],
+			[
+				"image",
+				"background-image"
+			],
+			[
+				"text",
+				"text-align"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 392.0,
+		"last_filter": "package",
+		"selected_items":
+		[
+			[
+				"package",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 530.0
+	},
+	"console":
+	{
+		"height": 126.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '2915d1851351e5ee549c20394736b442' + '8bc59f460fa1548d1514676163dafc88'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Users/cesaribarra/Desktop/Angular/app.js",
+		"/Users/cesaribarra/Desktop/Angular/index.html",
+		"/Users/cesaribarra/Desktop/untitled folder/router.py",
+		"/Users/cesaribarra/Desktop/learn-sass/scss/_colors.scss",
+		"/Users/cesaribarra/Desktop/learn-sass/css/index.css",
+		"/Users/cesaribarra/Desktop/learn-sass/scss/_media_queries.scss",
+		"/Users/cesaribarra/Desktop/learn-sass/scss/_responsive.scss",
+		"/Users/cesaribarra/Desktop/learn-sass/scss/index.scss",
+		"/Users/cesaribarra/Desktop/learn-sass/index.html",
+		"/Users/cesaribarra/Desktop/twitter-api-examples/search.js",
+		"/Users/cesaribarra/Desktop/Rectangle.java",
+		"/Users/cesaribarra/Desktop/untitled folder/tester.html",
+		"/Users/cesaribarra/Desktop/JADE Web Dev/2.0/script.js",
+		"/Users/cesaribarra/Desktop/JADE Web Dev/cesaribarra10.github.io/index.js",
+		"/Users/cesaribarra/Desktop/untitled folder/untitled.js",
+		"/Users/cesaribarra/Desktop/JADE Web Dev/cesaribarra10.github.io/index.html",
+		"/Users/cesaribarra/Desktop/untitled folder/jquery.js",
+		"/Users/cesaribarra/Desktop/jquery.js",
+		"/Users/cesaribarra/Desktop/tester.html",
+		"/Users/cesaribarra/Desktop/untitled.js",
+		"/Users/cesaribarra/Desktop/twitter-api-examples/sample.js",
+		"/Users/cesaribarra/Desktop/Devfest/todo/www/index.html",
+		"/Users/cesaribarra/Desktop/Chrome/manifest.json",
+		"/Users/cesaribarra/Desktop/Chrome2/manifest.json",
+		"/Users/cesaribarra/Desktop/Chrome2/manifest.js",
+		"/Users/cesaribarra/Desktop/level0-done/app.py",
+		"/Users/cesaribarra/Desktop/CU Shares/CUSharesFinal/public/stylesheets/style.css",
+		"/Users/cesaribarra/Desktop/CU Shares/CUSharesFinal/views/index.ejs",
+		"/Users/cesaribarra/Desktop/JADE Web Dev/style.css",
+		"/Users/cesaribarra/Desktop/JADE Web Dev/index.html",
+		"/Users/cesaribarra/Desktop/JADE Web Dev/company.html",
+		"/Users/cesaribarra/Desktop/JADE Web Dev/index.js",
+		"/Users/cesaribarra/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/Users/cesaribarra/Desktop/Cups Website/MainController.js",
+		"/Users/cesaribarra/Desktop/Cups Website/app.js",
+		"/Users/cesaribarra/Desktop/Cups Website/style.css",
+		"/Users/cesaribarra/Desktop/React/react-flux-simple-app/package.json",
+		"/Users/cesaribarra/Desktop/Cups Website/untitled2.html",
+		"/Users/cesaribarra/Desktop/untitled2.html",
+		"/Users/cesaribarra/Downloads/angular.min.js",
+		"/Users/cesaribarra/Desktop/untitled.html",
+		"/Users/cesaribarra/Desktop/untitled.php",
+		"/Users/cesaribarra/Desktop/TheFireNexttime.java",
+		"/Users/cesaribarra/Desktop/Book2.java",
+		"/Users/cesaribarra/Desktop/fail2ban.java",
+		"/Users/cesaribarra/Desktop/CUSharesFinal/public/stylesheets/style.css",
+		"/Users/cesaribarra/Desktop/CUSharesFinal/views/explore.ejs",
+		"/Users/cesaribarra/Desktop/CUShares/public/stylesheets/style2.css",
+		"/Users/cesaribarra/Desktop/IMG_1140.jpg",
+		"/Users/cesaribarra/Desktop/CUShares/views/index2.html",
+		"/Users/cesaribarra/Desktop/CUShares/package.json",
+		"/Users/cesaribarra/Desktop/CUShares/views/toiletries.ejs",
+		"/Users/cesaribarra/Desktop/CUShares/views/hardware.ejs",
+		"/Users/cesaribarra/Desktop/CUShares/views/results.ejs",
+		"/Users/cesaribarra/Desktop/demoweb/mealswipes.html",
+		"/Users/cesaribarra/Desktop/demoweb/clothes.html",
+		"/Users/cesaribarra/Desktop/demoweb/electronics.html",
+		"/Users/cesaribarra/Desktop/demoweb/toiletries.html",
+		"/Users/cesaribarra/Desktop/demoweb/kitchenappliances.html",
+		"/Users/cesaribarra/Desktop/demoweb/bike.html",
+		"/Users/cesaribarra/Desktop/demoweb/officesupplies.html",
+		"/Users/cesaribarra/Desktop/demoweb/livefeed.html",
+		"/Users/cesaribarra/Downloads/demoweb/bike.html",
+		"/Users/cesaribarra/Downloads/demoweb/style.css",
+		"/Users/cesaribarra/Downloads/demoweb/livefeed.html",
+		"/Users/cesaribarra/Desktop/CUShares/CUShares.js",
+		"/Users/cesaribarra/Desktop/CUShares/stylesheet.css",
+		"/Users/cesaribarra/Desktop/CUShares/CUShares.html",
+		"/Users/cesaribarra/Desktop/Anteater Website/style.css",
+		"/Users/cesaribarra/Desktop/tester.js",
+		"/Users/cesaribarra/Desktop/Anteater Website/Anteater-Website.html",
+		"/Users/cesaribarra/Desktop/tester.py",
+		"/Users/cesaribarra/Desktop/Anteater Website/website/untitled.html",
+		"/Users/cesaribarra/Desktop/tester.java",
+		"/Users/cesaribarra/Desktop/Anteater Website/css/bootstrap.css",
+		"/Users/cesaribarra/Desktop/CUShares.html",
+		"/Users/cesaribarra/Desktop/collegeblog/FirstGenBlog.html",
+		"/Users/cesaribarra/Desktop/collegeblog/FirstGenBlog.css",
+		"/Users/cesaribarra/Desktop/college blog/FirstGenBlog.css",
+		"/Users/cesaribarra/Desktop/college blog/FirstGenBlog.html",
+		"/Users/cesaribarra/Desktop/college blog/anteater.jpeg",
+		"/Users/cesaribarra/Desktop/Comp Sci Stuff/firstGitHub/College Blog.css",
+		"/Users/cesaribarra/Desktop/Comp Sci Stuff/firstGitHub/College Blog.html",
+		"/Users/cesaribarra/Desktop/Pong.py",
+		"/Users/cesaribarra/Desktop/game.py",
+		"/Users/cesaribarra/Desktop/Comp Sci Stuff/firstGitHub/SumittingAnArticle.html",
+		"/Users/cesaribarra/Desktop/Comp Sci Stuff/firstGitHub/CollegeWebsite.css",
+		"/Users/cesaribarra/Documents/college application css.css",
+		"/Users/cesaribarra/Desktop/Comp Sci Stuff/firstGitHub/College Website.html"
+	],
+	"find":
+	{
+		"height": 22.0
+	},
+	"find_in_files":
+	{
+		"height": 93.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			";})",
+			";\n"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": false,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 22.0
+	},
+	"input":
+	{
+		"height": 29.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "app.sublime-project",
+	"replace":
+	{
+		"height": 40.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"",
+				"CUSharesFinal/app.js"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 150.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
