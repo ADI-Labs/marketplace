@@ -86,6 +86,10 @@ def sell():
     else:
         return render_template("sell.html")
 
+@app.route("/bookinfo/")
+def bookinfo():
+    return render_template("bookinfo.html")
+
 
 app.run(debug=True)
 
