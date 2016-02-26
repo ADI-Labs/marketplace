@@ -19,14 +19,14 @@
 
 			<h2>Login</h2>
 				<form action="" method="POST">
-				  <!-- {{ form.csrf_token }} -->
+				  {{ form.csrf_token }}
 					  <div>
-					    <!-- {{ form.name.label}} -->
-					    <!-- {{ form.name }} -->
+					    {{ form.name.label}}
+					    {{ form.name }}
 					  </div>
 					  <div>
-					    <!-- {{ form.password.label }} -->
-					    <!-- {{ form.password }} -->
+					    {{ form.password.label }}
+					    {{ form.password }}
 					  </div>
 				  <input type="submit" value="Login">
 				    <a href="/register"><button class="launch-button">Sign Up</button></a> 

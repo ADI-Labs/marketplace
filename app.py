@@ -45,7 +45,7 @@ def home():
     if request.method == 'POST' and form.validate():
         user = User(name=form.name.data,password=form.password.data)
         login_user(user)
-        return redirect('/booklist')
+        return render_template("booklist.html")
 
     return render_template('login.html', form=form)
 
@@ -53,7 +53,7 @@ def home():
 @app.route("/register/", methods=["POST","GET"])
 def registration():
   form = UserForm(request.form)
-  if request.method == 'POST' and form.validate():
+  if request.method == "POST" and form.validate():
     form.save()
     return redirect("/login")
 
