@@ -16,13 +16,9 @@ def registration():
         email=request.form["email"]
         return render_template("index.html")
 
-@app.route("/search/<id>",methods=["POST,GET"])
+@app.route("/booklist/")
 def search():
-    if request.method=="POST":
-        data=request.form["book_search"]
-        return render_template("search.html",api_data=data)
-    else:
-        return render_template("search.html")
+        return render_template("booklist.html")
 
 @app.route("/book/<id>")
 def book(id):
