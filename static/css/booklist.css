@@ -3,7 +3,14 @@
     background-color: white;
     text-align: center;
     text-decoration-line: underline;
+}
 
+.caption {
+    text-align: center;
+}
+
+img {
+    align-content: center;
 }
 
 #wrapper {
