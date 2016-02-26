@@ -86,4 +86,8 @@ def sell():
     else:
         return render_template("sell.html")
 
+
 app.run(debug=True)
+
+
+
