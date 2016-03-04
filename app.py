@@ -35,7 +35,7 @@ class Book(db.Document):
     book_name = db.StringField(required=True)
     price = db.StringField(required=True)
     contact_info = db.StringField(required=True)
-    description = db.StringField()
+    description = db.StringField(required=True)
 
 UserForm = model_form(User)
 UserForm.password = PasswordField('password')
@@ -70,7 +70,8 @@ def registration():
 
   return render_template("register.html", form=form)
 
-@app.route("/booklist/")
+@app.route("/booklist")
+@login_required
 def getBooks():
     listOfBooks = Book.objects()
     return render_template("booklist.html", listOfBooks = listOfBooks)
@@ -80,6 +81,7 @@ def search():
   return render_template("booklist.html")
 
 @app.route("/booklist/<id>")
+@login_required
 def s(id):
   if request.method=="POST":
     data=id
