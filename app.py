@@ -1,6 +1,6 @@
-from flask import Flask,  render_template, request
+from flask import Flask,  render_template, request, redirect
 from flask.ext.mongoengine import MongoEngine
-from flask.ext.login import LoginManager
+from flask.ext.login import LoginManager, login_user, logout_user
 from flask.ext.mongoengine.wtf import model_form
 from wtforms import PasswordField
 from flask import redirect
@@ -10,12 +10,13 @@ app = Flask(__name__)
 app.config["DEBUG"] = True      
 app.config['MONGODB_SETTINGS'] = { 'db' : 'books' }
 app.config['SECRET_KEY'] = 'secretkey'
+app.config['WTF_CSRF_ENABLED'] = True
 db = MongoEngine(app)
 
 login_manager = LoginManager()
 login_manager.init_app(app)
 
-
+#Move to another file
 class User(db.Document):
   name = db.StringField(required=True,unique=True)
   password = db.StringField(required=True)
@@ -36,8 +37,11 @@ class Book(db.Document):
     contact_info = db.StringField(required=True)
     description = db.StringField
 
+
 UserForm = model_form(User)
 UserForm.password = PasswordField('password')
+
+BookForm = model_form(Book)
 
 @login_manager.user_loader
 def load_user(name):
@@ -47,18 +51,19 @@ def load_user(name):
   else:
     return None
 
-@app.route("/")
+@app.route("/", methods=['GET','POST'])
 def home():
     form = UserForm(request.form)
     if request.method == 'POST' and form.validate():
         user = User(name=form.name.data,password=form.password.data)
-        load_user(user)
-        return render_template("booklist.html")
+
+        login_user(user)
+        return redirect('/booklist')
 
     return render_template('login.html', form=form)
 
 
-@app.route("/register/", methods=["POST","GET"])
+@app.route("/register", methods=["POST","GET"])
 def registration():
   form = UserForm(request.form)
   if request.method == "POST" and form.validate():
@@ -68,6 +73,7 @@ def registration():
   return render_template("register.html", form=form)
 
 @app.route("/booklist/")
+@login_required
 def search():
         return render_template("booklist.html")
 
@@ -79,12 +85,15 @@ def s(id):
     return redirect("/booklist")
 
 @app.route("/book/<id>")
+@login_required
 def book(id):
     data=id
     return render_template("book.html",api_data=data)
 
 @app.route("/sell/",methods=["POST,GET"])
+@login_required
 def sell():
+
     if request.method=="POST":
         new_book=Book(request.form["user_name"],request.form["book_name"],request.form["price"],
                       request.form["contactinfo"],request.form["description"])
@@ -92,6 +101,18 @@ def sell():
         return render_template("booklist.html")
     else:
         return render_template("sell.html")
+
+
+@app.route("/bookinfo/")
+@login_required
+def bookinfo():
+    return render_template("bookinfo.html")
+
+@app.route("/logout")
+@login_required
+def logout():
+	logout_user()
+	return redirect("/")
 
 
 app.run(debug=True)
