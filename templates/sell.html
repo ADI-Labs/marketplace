@@ -1,30 +1,56 @@
-{% extends "base.html" %}
+<!DOCTYPE html>
+<html lang="en" >
 
-{% block title %}Sell Book{% endblock %}
-{% block body %}
+<head>
+  <meta charset="utf-8">
+  <title>Registration</title>
+  <meta name="description" content="Sell a Book">
+  <meta name="author" content="ADI Labs Marketplace">
 
-    <h1>Sell a book!</h1>
-    <form method="POST">Sell
-      {{ form.csrf_token }}
-        <div>
-          {{ form.book_name.label}}
-          {{ form.book_name }} 
-        </div>
-        <div>
-          {{ form.price.label }}
-          {{ form.price }}
-        </div>
-        <div>
-          {{ form.contact_info.label}}
-          {{ form.contact_info }} 
-        </div>
-        <div>
-          {{ form.description.label}}
-          {{ form.description }} 
-        </div>
-        <input type="submit" value="Post Item">
-    </form>
+</head>
+<body>
+  <div class="row">
+      <div class="large-12 columns">
+          <div class="panel">
 
+          <h2>Sell</h2>
 
+          <form action="" method="POST">
+            {{ form.csrf_token }}
+            <div>
+              {{ form.user_name.label}}
+              {{ form.user_name }} 
+            </div>
+            <div>
+              {{ form.book_name.label }}
+              {{ form.book_name }}
+            </div>
+            <div>
+              {{ form.price.label }}
+              {{ form.price }}
+            </div>
+            <div>
+              {{ form.contact_info.label }}
+              {{ form.contact_info }}
+            </div>
+            <div>
+              {{ form.description.label }}
+              {{ form.description }}
+            </div>
+            <input type="submit" value="Sell">
+          </form>
 
-{% endblock %}
+          </div>
+      </div>
+  </div>
+
+<!-- 
+  <script src="{{ url_for('static', filename='js/vendor/jquery.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/foundation.js') }}"></script>
+  <script>
+    $(document).foundation();
+  </script>
+-->
+
+</body>
+</html>
