@@ -73,7 +73,7 @@ def registration():
 
 @app.route("/booklist/")
 def getBooks():
-    listOfBooks = Books.objects()
+    listOfBooks = Book.objects()
     return render_template("booklist.html", listOfBooks = listOfBooks)
 
 @login_required
@@ -100,14 +100,15 @@ def sell():
     book = Book(user_name=form.user_name.data, book_name=form.book_name.data, price=form.price.data,
                 contact_info=form.contact_info.data, description=form.description.data)
     book.save()
-    return render_template("confirm.html")
+    return redirect('/booklist')
   else:
     return render_template("sell.html",form=form)
 
-@app.route("/bookinfo/")
-@login_required
-def bookinfo():
-  return render_template("bookinfo.html")
+@app.route("/bookinfo/<id>")
+def bookinfo(id):
+  books=Book.objects(book_name = id)
+  return render_template("bookinfo.html",book=books[0])
+
 
 @app.route("/logout")
 @login_required

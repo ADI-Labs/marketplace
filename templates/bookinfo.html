@@ -17,12 +17,17 @@
             </div>
         </div>
         <div class="right-side">
-            <h2>Name of the book</h2>
-            <h3>Name of the person that is selling the book</h3>
-            <p>Product Description</p>
-            <div class="button-group">
-                <button type="button" class="btn btn-success">Buy Now!</button>
-            </div>
+                    <div class="caption">
+                        <h3>{{book.book_name}}</h3>
+                        <p>{{ book.description }}</p>
+                        <p>{{ book.price }}</p>
+			<p>{{ book.user_name}}</p>
+			<p>{{book.contact_info}}</p>
+                        <!--This should populate the page with the respective book-->
+{#                      <p><a href="#" class = "btn btn-primary" role="button" methods="GET">Buy now</a></p>#}
+                    </div>
+                </div>
+             
         </div>
     </div>
 
