@@ -81,7 +81,7 @@ def sell():
         name=request.form["name"]
         department=request.form["dep"]
         price=request.form("price")
-        isbn=request.form("price")
+        isbn=request.form("isbn")
         return render_template("confirm.html")
     else:
         return render_template("sell.html")
