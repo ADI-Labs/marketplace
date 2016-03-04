@@ -28,7 +28,6 @@
             </ul>
         </div>
 
-
         <!--Header for page -->
         <div id = "page-content-wrapper">
 
@@ -47,16 +46,13 @@
                 </div>
             </div>
 
-
-
-
             <!--This will end up being what flask iterates, adding the list of available books to the page-->
             <div class="row">
                 <div class="col-sm-4">
                     {% for book in listOfBooks %}
                     <img src="..." alt="...">
                     <div class="caption">
-                        <h3>{{book.bookName}}</h3>
+                        <h3>{{book.name}}</h3>
                         <p>{{ book.description }}</p>
                         <p>{{ book.price }}</p>
                         <!--This GET method will pull the book information and redirect the user to an info page-->
@@ -67,9 +63,5 @@
             </div>
 
     </div>
-
-
-
-
 </body>
 </html>

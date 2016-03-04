@@ -32,7 +32,7 @@ class User(db.Document):
 #move to another file
 class Book(db.Document):
 	name = db.StringField(required=True)
-	department = db.StringField(required=True)
+	description = db.StringField(required=True)
 	price = db.StringField(required=True)
 	isbn = db.StringField(required=True)
 
@@ -71,22 +71,12 @@ def registration():
 
 @app.route("/booklist/")
 def getBooks():
-    listOfBooks = Books.objects()
+    listOfBooks = Book.objects()
     return render_template("booklist.html", listOfBooks = listOfBooks)
 
 @login_required
 def search():
         return render_template("booklist.html")
-
-
-
-
-# @app.route("/booklist/<id>")
-# def s(id):
-#     if request.method=="POST":
-#         data=id
-#         return render_template("booklist.html",api_data=data)
-#     return redirect("/booklist")
 
 @app.route("/book/<id>")
 @login_required
@@ -119,6 +109,3 @@ def logout():
 
 
 app.run(debug=True)
-
-
-
