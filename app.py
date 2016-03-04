@@ -1,6 +1,6 @@
-from flask import Flask,  render_template, request
+from flask import Flask,  render_template, request, redirect
 from flask.ext.mongoengine import MongoEngine
-from flask.ext.login import LoginManager
+from flask.ext.login import LoginManager, login_user, logout_user
 from flask.ext.mongoengine.wtf import model_form
 from wtforms import PasswordField
 import requests
@@ -9,6 +9,7 @@ app = Flask(__name__)
 app.config["DEBUG"] = True      
 app.config['MONGODB_SETTINGS'] = { 'db' : 'books' }
 app.config['SECRET_KEY'] = 'secretkey'
+app.config['WTF_CSRF_ENABLED'] = True
 db = MongoEngine(app)
 
 login_manager = LoginManager()
@@ -28,6 +29,9 @@ class User(db.Document):
   def get_id(self):
     return self.name
 
+class Book(db.Document):
+	
+
 UserForm = model_form(User)
 UserForm.password = PasswordField('password')
 
@@ -45,7 +49,7 @@ def home():
     if request.method == 'POST' and form.validate():
         user = User(name=form.name.data,password=form.password.data)
         login_user(user)
-        return render_template("booklist.html")
+        return redirect('/booklist')
 
     return render_template('login.html', form=form)
 
@@ -60,6 +64,7 @@ def registration():
   return render_template("register.html", form=form)
 
 @app.route("/booklist/")
+@login_required
 def search():
         return render_template("booklist.html")
 
@@ -71,11 +76,13 @@ def s(id):
     return redirect("/booklist")
 
 @app.route("/book/<id>")
+@login_required
 def book(id):
     data=id
     return render_template("book.html",api_data=data)
 
 @app.route("/sell/",methods=["POST,GET"])
+@login_required
 def sell():
     if request.method=="POST":
         name=request.form["name"]
@@ -87,8 +94,15 @@ def sell():
         return render_template("sell.html")
 
 @app.route("/bookinfo/")
+@login_required
 def bookinfo():
     return render_template("bookinfo.html")
+
+@app.route("/logout")
+@login_required
+def logout():
+	logout_user()
+	return redirect("/")
 
 
 
