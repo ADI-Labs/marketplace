@@ -7,20 +7,24 @@
     <form method="POST">Sell
       {{ form.csrf_token }}
         <div>
-          {{ form.name.label}}
-          {{ form.name }} 
+          {{ form.user_name.label}}
+          {{ form.user_name }} 
         </div>
         <div>
-          {{ form.department.label }}
-          {{ form.department }}
+          {{ form.book_name.label}}
+          {{ form.book_name }} 
         </div>
         <div>
-          {{ form.price.label}}
-          {{ form.price }} 
+          {{ form.price.label }}
+          {{ form.price }}
         </div>
         <div>
-          {{ form.isbn.label}}
-          {{ form.isbn }} 
+          {{ form.contact_info.label}}
+          {{ form.contact_info }} 
+        </div>
+        <div>
+          {{ form.description.label}}
+          {{ form.description }} 
         </div>
         <input type="submit" value="Post Item">
     </form>
