@@ -1,11 +1,29 @@
 {% extends "base.html" %}
 
-{% block title %}Title{% endblock %}
-
+{% block title %}Sell Book{% endblock %}
 {% block body %}
 
     <h1>Sell a book!</h1>
-    <form method="POST">Sell</form>
+    <form method="POST">Sell
+      {{ form.csrf_token }}
+        <div>
+          {{ form.book_name.label}}
+          {{ form.book_name }} 
+        </div>
+        <div>
+          {{ form.price.label }}
+          {{ form.price }}
+        </div>
+        <div>
+          {{ form.contact_info.label}}
+          {{ form.contact_info }} 
+        </div>
+        <div>
+          {{ form.description.label}}
+          {{ form.description }} 
+        </div>
+        <input type="submit" value="Post Item">
+    </form>
 
 
 
