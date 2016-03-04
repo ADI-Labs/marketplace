@@ -6,6 +6,7 @@ from wtforms import PasswordField
 from flask import redirect
 import requests
 
+
 app = Flask(__name__)
 app.config["DEBUG"] = True      
 app.config['MONGODB_SETTINGS'] = { 'db' : 'books' }
@@ -54,10 +55,12 @@ def load_user(name):
 @app.route("/", methods=['GET','POST'])
 def home():
   form = UserForm(request.form)
+  print('before if')
   if request.method == 'POST' and form.validate():
-    user = User(name=form.name.data,password=form.password.data)
-    login_user(user)
-    return redirect('/booklist')
+    user = User.objects(name=form.name.data,password=form.password.data).first()
+    if user:
+      login_user(user)
+      return redirect('/booklist')
 
   return render_template('login.html', form=form)
 
@@ -74,8 +77,9 @@ def registration():
 @app.route("/booklist")
 @login_required
 def getBooks():
-    listOfBooks = Book.objects()
-    return render_template("booklist.html", listOfBooks = listOfBooks)
+  print("books")
+  listOfBooks = Book.objects()
+  return render_template("booklist.html", listOfBooks = listOfBooks)
 
 @login_required
 def search():
@@ -116,7 +120,6 @@ def bookinfo():
 def logout():
 	logout_user()
 	return redirect("/")
-
 
 app.run(debug=True)
 
