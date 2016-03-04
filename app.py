@@ -9,7 +9,7 @@ import os
 from werkzeug import secure_filename
 
 UPLOAD_FOLDER = 'C:/Users/james/uploads/'
-ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
+ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif', 'PNG', 'JPG', 'JPEG', 'GIF'])
 
 app = Flask(__name__)
 app.config["DEBUG"] = True      
@@ -113,10 +113,10 @@ def sell():
     form = BookForm(request.form)
     if request.method=="POST" and form.validate():
       file = request.files['file']
-      # if file and allowed_file(file.filename):
-      filename = secure_filename(file.filename)
-      file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-      image_url = url_for('uploaded_file', filename=filename)
+      if file and allowed_file(file.filename):
+        filename = secure_filename(file.filename)
+        file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+        image_url = url_for('uploaded_file', filename=filename)
 
       book = Book(user_name=form.user_name.data, book_name=form.book_name.data, price=form.price.data,
                 contact_info=form.contact_info.data, description=form.description.data,
