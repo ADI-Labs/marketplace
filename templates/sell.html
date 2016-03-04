@@ -1,40 +1,31 @@
-<!DOCTYPE html>
-<html lang="en" >
+{% extends "base.html" %}
 
-<head>
-  <meta charset="utf-8">
-  <title>Sell.html</title>
-  <meta name="description" content="Sell Item Page">
-  <meta name="author" content="ADI Labs Marketplace">
+{% block title %}Sell Book{% endblock %}
 
-</head>
-<body>
-  <div class="row">
-      <div class="large-12 columns">
-          <div class="panel">
+{% block body %}
 
-          <h2>Register</h2>
+    <h1>Sell a book!</h1>
+    <form method="POST">Sell
+      {{ form.csrf_token }}
+        <div>
+          {{ form.book_name.label}}
+          {{ form.book_name }} 
+        </div>
+        <div>
+          {{ form.price.label }}
+          {{ form.price }}
+        </div>
+        <div>
+          {{ form.contact_info.label}}
+          {{ form.contact_info }} 
+        </div>
+        <div>
+          {{ form.description.label}}
+          {{ form.description }} 
+        </div>
+        <input type="submit" value="Post Item">
+    </form>
 
-          <form action="" method="POST">
-            <p> Book name: <input name="name"></p>
-            <p> ISBN: <input name="isbn"></p>
-            <p> Department: <input name="dep"></p>
-            <p> Price: <input name="price"></p>
 
-            <input type="submit" value="Post">
-          </form>
 
-          </div>
-      </div>
-  </div>
-
-<!-- 
-  <script src="{{ url_for('static', filename='js/vendor/jquery.min.js') }}"></script>
-  <script src="{{ url_for('static', filename='js/foundation.js') }}"></script>
-  <script>
-    $(document).foundation();
-  </script>
--->
-
-</body>
-</html>
+{% endblock %}
