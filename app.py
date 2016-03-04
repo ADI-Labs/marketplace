@@ -11,6 +11,7 @@ from werkzeug import secure_filename
 UPLOAD_FOLDER = 'C:/Users/james/uploads/'
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif', 'PNG', 'JPG', 'JPEG', 'GIF'])
 
+
 app = Flask(__name__)
 app.config["DEBUG"] = True      
 app.config['MONGODB_SETTINGS'] = { 'db' : 'books' }
@@ -45,9 +46,13 @@ class Book(db.Document):
     book_name = db.StringField(required=True)
     price = db.StringField(required=True)
     contact_info = db.StringField(required=True)
+<<<<<<< HEAD
     description = db.StringField()
     image = db.StringField()
 
+=======
+    description = db.StringField(required=True)
+>>>>>>> 5016468f7acc03772652ba871dae629d2e19aa4e
 
 UserForm = model_form(User)
 UserForm.password = PasswordField('password')
@@ -65,10 +70,12 @@ def load_user(name):
 @app.route("/", methods=['GET','POST'])
 def home():
   form = UserForm(request.form)
+  print('before if')
   if request.method == 'POST' and form.validate():
-    user = User(name=form.name.data,password=form.password.data)
-    login_user(user)
-    return redirect('/booklist')
+    user = User.objects(name=form.name.data,password=form.password.data).first()
+    if user:
+      login_user(user)
+      return redirect('/booklist')
 
   return render_template('login.html', form=form)
 
@@ -82,16 +89,20 @@ def registration():
 
   return render_template("register.html", form=form)
 
-@app.route("/booklist/")
+@app.route("/booklist")
+@login_required
 def getBooks():
-    listOfBooks = Book.objects()
-    return render_template("booklist.html", listOfBooks = listOfBooks)
+  print("books")
+  listOfBooks = Book.objects()
+  return render_template("booklist.html", listOfBooks = listOfBooks)
+
 
 @login_required
 def search():
   return render_template("booklist.html")
 
 @app.route("/booklist/<id>")
+@login_required
 def s(id):
   if request.method=="POST":
     data=id
@@ -134,10 +145,11 @@ def uploaded_file(filename):
                                filename)
 
 
-@app.route("/bookinfo/")
-@login_required
-def bookinfo():
-  return render_template("bookinfo.html")
+@app.route("/bookinfo/<id>")
+def bookinfo(id):
+  books=Book.objects(book_name = id)
+  return render_template("bookinfo.html",book=books[0])
+
 
 @app.route("/logout")
 @login_required
@@ -145,8 +157,6 @@ def logout():
 	logout_user()
 	return redirect("/")
 
-
 app.run(debug=True)
-
 
 
