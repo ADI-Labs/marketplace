@@ -6,6 +6,10 @@
     <h1>Sell a book!</h1>
     <form method="POST">Sell
       {{ form.csrf_token }}
+`	<div>
+	  {{form.user_name.label}}
+	  {{form.user_name}}
+	</div>	
         <div>
           {{ form.book_name.label}}
           {{ form.book_name }} 
