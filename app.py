@@ -51,13 +51,13 @@ def load_user(name):
 
 @app.route("/", methods=['GET','POST'])
 def home():
-    form = UserForm(request.form)
-    if request.method == 'POST' and form.validate():
-        user = User(name=form.name.data,password=form.password.data)
-        login_user(user)
-        return redirect('/booklist')
+  form = UserForm(request.form)
+  if request.method == 'POST' and form.validate():
+    user = User(name=form.name.data,password=form.password.data)
+    login_user(user)
+    return redirect('/booklist')
 
-    return render_template('login.html', form=form)
+  return render_template('login.html', form=form)
 
 
 @app.route("/register", methods=["POST","GET"])
@@ -72,25 +72,25 @@ def registration():
 @app.route("/booklist/")
 @login_required
 def search():
-        return render_template("booklist.html")
+  return render_template("booklist.html")
 
 @app.route("/booklist/<id>")
 def s(id):
-    if request.method=="POST":
-        data=id
-        return render_template("booklist.html",api_data=data)
-    return redirect("/booklist")
+  if request.method=="POST":
+    data=id
+    return render_template("booklist.html",api_data=data)
+  return redirect("/booklist")
 
 @app.route("/book/<id>")
 @login_required
 def book(id):
-    data=id
-    return render_template("book.html",api_data=data)
+  data=id
+  return render_template("book.html",api_data=data)
 
 @app.route("/sell/",methods=["POST,GET"])
 @login_required
 def sell():
-	form = BookForm(request.form)
+  form = BookForm(request.form)
   if request.method=="POST" and form.validate():
     book = Book(name=form.name.data,department=form.department.data,price=form.price.data,isbn=form.department.data)
     book.save()
@@ -101,7 +101,7 @@ def sell():
 @app.route("/bookinfo/")
 @login_required
 def bookinfo():
-    return render_template("bookinfo.html")
+  return render_template("bookinfo.html")
 
 @app.route("/logout")
 @login_required
