@@ -3,6 +3,7 @@ from flask.ext.mongoengine import MongoEngine
 from flask.ext.login import LoginManager, login_user, logout_user
 from flask.ext.mongoengine.wtf import model_form
 from wtforms import PasswordField
+from flask import redirect
 import requests
 
 app = Flask(__name__)
@@ -29,12 +30,13 @@ class User(db.Document):
   def get_id(self):
     return self.name
 
-#move to another file
 class Book(db.Document):
-	name = db.StringField(required=True)
-	department = db.StringField(required=True)
-	price = db.StringField(required=True)
-	isbn = db.StringField(required=True)
+    user_name = db.StringField(required=True)
+    book_name = db.StringField(required=True)
+    price = db.DoubleField(required=True)
+    contact_info = db.StringField(required=True)
+    description = db.StringField
+
 
 UserForm = model_form(User)
 UserForm.password = PasswordField('password')
@@ -54,6 +56,7 @@ def home():
     form = UserForm(request.form)
     if request.method == 'POST' and form.validate():
         user = User(name=form.name.data,password=form.password.data)
+
         login_user(user)
         return redirect('/booklist')
 
@@ -97,13 +100,15 @@ def book(id):
 @app.route("/sell/",methods=["POST,GET"])
 @login_required
 def sell():
-	form = BookForm(request.form)
-  if request.method=="POST" and form.validate():
-    book = Book(name=form.name.data,department=form.department.data,price=form.price.data,isbn=form.department.data)
-    book.save()
-    return render_template("confirm.html")
-  else:
-    return render_template("sell.html")
+
+    if request.method=="POST":
+        new_book=Book(request.form["user_name"],request.form["book_name"],request.form["price"],
+                      request.form["contactinfo"],request.form["description"])
+        new_book.save()
+        return render_template("booklist.html")
+    else:
+        return render_template("sell.html")
+
 
 @app.route("/bookinfo/")
 @login_required
@@ -115,7 +120,6 @@ def bookinfo():
 def logout():
 	logout_user()
 	return redirect("/")
-
 
 
 app.run(debug=True)
