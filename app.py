@@ -1,20 +1,30 @@
-from flask import Flask,  render_template, request, redirect
+from flask import Flask, render_template, request, redirect, send_from_directory, url_for
 from flask.ext.mongoengine import MongoEngine
 from flask.ext.login import LoginManager, login_user, logout_user, login_required
 from flask.ext.mongoengine.wtf import model_form
 from wtforms import PasswordField
 from flask import redirect
 import requests
+import os
+from werkzeug import secure_filename
+
+UPLOAD_FOLDER = 'C:/Users/james/uploads/'
+ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
 
 app = Flask(__name__)
 app.config["DEBUG"] = True      
 app.config['MONGODB_SETTINGS'] = { 'db' : 'books' }
 app.config['SECRET_KEY'] = 'secretkey'
 app.config['WTF_CSRF_ENABLED'] = True
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 db = MongoEngine(app)
 
 login_manager = LoginManager()
 login_manager.init_app(app)
+
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONSs
 
 #Move to another file
 class User(db.Document):
@@ -36,6 +46,7 @@ class Book(db.Document):
     price = db.StringField(required=True)
     contact_info = db.StringField(required=True)
     description = db.StringField()
+    image = db.StringField()
 
 
 UserForm = model_form(User)
@@ -93,16 +104,35 @@ def book(id):
   data=id
   return render_template("book.html",api_data=data)
 
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
+
 @app.route("/sell/",methods=["POST","GET"])
 def sell():
-  form = BookForm(request.form)
-  if request.method=="POST" and form.validate():
-    book = Book(user_name=form.user_name.data, book_name=form.book_name.data, price=form.price.data,
-                contact_info=form.contact_info.data, description=form.description.data)
-    book.save()
-    return render_template("confirm.html")
-  else:
-    return render_template("sell.html",form=form)
+    form = BookForm(request.form)
+    if request.method=="POST" and form.validate():
+      file = request.files['file']
+      # if file and allowed_file(file.filename):
+      filename = secure_filename(file.filename)
+      file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+      image_url = url_for('uploaded_file', filename=filename)
+
+      book = Book(user_name=form.user_name.data, book_name=form.book_name.data, price=form.price.data,
+                contact_info=form.contact_info.data, description=form.description.data,
+                image=image_url)
+      book.save()
+      return render_template("confirm.html")
+    else:
+      return render_template("sell.html",form=form)
+        
+    
+
+@app.route('/upload/<filename>')
+def uploaded_file(filename):
+    return send_from_directory(app.config['UPLOAD_FOLDER'],
+                               filename)
+
 
 @app.route("/bookinfo/")
 @login_required

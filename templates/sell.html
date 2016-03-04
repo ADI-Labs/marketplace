@@ -4,7 +4,8 @@
 {% block body %}
 
     <h1>Sell a book!</h1>
-    <form method="POST">Sell
+    </form>
+    <form method="POST" enctype=multipart/form-data>Sell
       {{ form.csrf_token }}
         <div>
           {{ form.user_name.label}}
@@ -26,6 +27,7 @@
           {{ form.description.label}}
           {{ form.description }} 
         </div>
+        <p><input type=file name=file>
         <input type="submit" value="Post Item">
     </form>
 
