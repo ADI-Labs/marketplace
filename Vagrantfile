@@ -10,10 +10,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # please see the online documentation at vagrantup.com.
 
   # Every Vagrant virtual environment requires a box to build off of.
-  config.vm.box = "ubuntu/trusty64"
+  config.vm.box = "precise32"
 
   # expose port 5000 for Flask
-  config.vm.network :forwarded_port,  guest: 5000,    host: 5000
+  config.vm.network :forwarded_port,  guest: 5000,    host: 5001
 
   # run the install script for dependencies
   config.vm.provision :shell, :path => "bootstrap.sh"

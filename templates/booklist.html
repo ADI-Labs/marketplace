@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Book List</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link rel="stylesheet" href="../static/css/booklist.css">
+</head>
+<body>
+
+    <div id="wrapper">
+
+        <!--Navbar at the side -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand">
+                   <a href="#">Something here...</a>
+                </li>
+                <li>
+                    <a href="#">Sell Books</a>
+                </li>
+                <li>
+                    <a href="#">Purchase Books</a>
+                </li>
+                <li>
+                    <a href="#">Something else here</a>
+                </li>
+            </ul>
+        </div>
+
+
+        <!--Header for page -->
+        <div id = "page-content-wrapper">
+
+            <div class = "jumbotron">
+                <h1>CU Marketplace</h1>
+            </div>
+        </div>
+
+        <!--Search Bar-->
+            <div class="row">
+                <div class="col-lg-6">
+                    <input type="text" class="form-control" placeholder="Search for a book here">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button">Go!</button>
+                    </span>
+                </div>
+            </div>
+
+
+
+
+            <!--This will end up being what flask iterates, adding the list of available books to the page-->
+            <div class="row">
+                <div class="col-sm-4">
+                    {% for book in listOfBooks %}
+                    <img src="..." alt="...">
+                    <div class="caption">
+                        <h3>{{book.bookName}}</h3>
+                        <p>{{ book.description }}</p>
+                        <p>{{ book.price }}</p>
+                        <!--This GET method will pull the book information and redirect the user to an info page-->
+{#                        <p><a href="#" class = "btn btn-primary" role="button" methods="GET">Buy now</a></p>#}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+    </div>
+
+
+
+
+</body>
+</html>
