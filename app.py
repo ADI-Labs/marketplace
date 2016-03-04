@@ -67,13 +67,13 @@ def registration():
   form = UserForm(request.form)
   if request.method == "POST" and form.validate():
     form.save()
-    return redirect("/login")
+    return redirect("/")
 
   return render_template("register.html", form=form)
 
 @app.route("/booklist/")
 def getBooks():
-    listOfBooks = Books.objects()
+    listOfBooks = Book.objects()
     return render_template("booklist.html", listOfBooks = listOfBooks)
 
 @login_required
