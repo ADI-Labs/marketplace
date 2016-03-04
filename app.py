@@ -117,7 +117,6 @@ def logout():
 	return redirect("/")
 
 
-
 app.run(debug=True)
 
 
