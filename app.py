@@ -39,6 +39,8 @@ class Book(db.Document):
 UserForm = model_form(User)
 UserForm.password = PasswordField('password')
 
+BookForm = model_form(Book)
+
 @login_manager.user_loader
 def load_user(name):
   users = User.objects(name=name)
@@ -47,7 +49,7 @@ def load_user(name):
   else:
     return None
 
-@app.route("/")
+@app.route("/", methods=['GET','POST'])
 def home():
     form = UserForm(request.form)
     if request.method == 'POST' and form.validate():
@@ -58,7 +60,7 @@ def home():
     return render_template('login.html', form=form)
 
 
-@app.route("/register/", methods=["POST","GET"])
+@app.route("/register", methods=["POST","GET"])
 def registration():
   form = UserForm(request.form)
   if request.method == "POST" and form.validate():
@@ -88,7 +90,7 @@ def book(id):
 @app.route("/sell/",methods=["POST,GET"])
 @login_required
 def sell():
-	form = UserForm(request.form)
+	form = BookForm(request.form)
     if request.method=="POST" and form.validate():
     	book = Book(name=form.name.data,department=form.department.data,price=form.price.data,isbn=form.department.data)
     	book.save()
