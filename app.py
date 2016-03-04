@@ -66,7 +66,7 @@ def registration():
   form = UserForm(request.form)
   if request.method == "POST" and form.validate():
     form.save()
-    return redirect("/login")
+    return redirect("/")
 
   return render_template("register.html", form=form)
 
