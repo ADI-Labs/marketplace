@@ -39,29 +39,32 @@ def load_user(name):
   else:
     return None
 
-# @app.route("/")
-# def home():
-#     form = UserForm(request.form)
-#     if request.method == 'POST' and form.validate():
-#         user = User(name=form.name.data,password=form.password.data)
-#         login_user(user)
-#         return render_template("booklist.html")
-#
-#     return render_template('login.html', form=form)
+@app.route("/")
+def home():
+    form = UserForm(request.form)
+    if request.method == 'POST' and form.validate():
+        user = User(name=form.name.data,password=form.password.data)
+        login_user(user)
+        return render_template("booklist.html")
+
+    return render_template('login.html', form=form)
 
 
-# @app.route("/register/", methods=["POST","GET"])
-# def registration():
-#   form = UserForm(request.form)
-#   if request.method == "POST" and form.validate():
-#     form.save()
-#     return redirect("/login")
+@app.route("/register/", methods=["POST","GET"])
+def registration():
+  form = UserForm(request.form)
+  if request.method == "POST" and form.validate():
+    form.save()
+    return redirect("/login")
 
   return render_template("register.html", form=form)
 
 @app.route("/booklist/")
-def search():
-        return render_template("booklist.html")
+def getBooks():
+    listOfBooks = Books.objects()
+    return render_template("booklist.html", listOfBooks = listOfBooks)
+
+
 
 # @app.route("/booklist/<id>")
 # def s(id):
