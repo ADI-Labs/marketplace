@@ -91,12 +91,12 @@ def book(id):
 @login_required
 def sell():
 	form = BookForm(request.form)
-    if request.method=="POST" and form.validate():
-    	book = Book(name=form.name.data,department=form.department.data,price=form.price.data,isbn=form.department.data)
-    	book.save()
-        return render_template("confirm.html")
-    else:
-        return render_template("sell.html")
+  if request.method=="POST" and form.validate():
+    book = Book(name=form.name.data,department=form.department.data,price=form.price.data,isbn=form.department.data)
+    book.save()
+    return render_template("confirm.html")
+  else:
+    return render_template("sell.html")
 
 @app.route("/bookinfo/")
 @login_required
