@@ -38,7 +38,6 @@ class Book(db.Document):
     contact_info = db.StringField(required=True)
     description = db.StringField(required=True)
 
-
 UserForm = model_form(User)
 UserForm.password = PasswordField('password')
 
@@ -122,6 +121,5 @@ def logout():
 	return redirect("/")
 
 app.run(debug=True)
-
 
 
