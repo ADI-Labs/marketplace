@@ -15,7 +15,7 @@ db = MongoEngine(app)
 login_manager = LoginManager()
 login_manager.init_app(app)
 
-
+#Move to another file
 class User(db.Document):
   name = db.StringField(required=True,unique=True)
   password = db.StringField(required=True)
@@ -29,8 +29,12 @@ class User(db.Document):
   def get_id(self):
     return self.name
 
+#move to another file
 class Book(db.Document):
-	
+	name = db.StringField(required=True)
+	department = db.StringField(required=True)
+	price = db.StringField(required=True)
+	isbn = db.StringField(required=True)
 
 UserForm = model_form(User)
 UserForm.password = PasswordField('password')
@@ -84,11 +88,10 @@ def book(id):
 @app.route("/sell/",methods=["POST,GET"])
 @login_required
 def sell():
-    if request.method=="POST":
-        name=request.form["name"]
-        department=request.form["dep"]
-        price=request.form("price")
-        isbn=request.form("price")
+	form = UserForm(request.form)
+    if request.method=="POST" and form.validate():
+    	book = Book(name=form.name.data,department=form.department.data,price=form.price.data,isbn=form.department.data)
+    	book.save()
         return render_template("confirm.html")
     else:
         return render_template("sell.html")
