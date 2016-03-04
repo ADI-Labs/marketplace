@@ -10,39 +10,36 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     <link rel="stylesheet" href="../static/css/booklist.css">
 
-</head> 
-
+</head>
 <body>
-<div class="row">
-      <div class="large-12 columns">
-          <div class="panel">
-
-			<h2>Login</h2>
-				<form action="" method="POST">
-				  {{ form.csrf_token }}
-					  <div>
-					    {{ form.name.label}}
-					    {{ form.name }}
-					  </div>
-					  <div>
-					    {{ form.password.label }}
-					    {{ form.password }}
-					  </div>
-				  <input type="submit" value="Login">
-				    <a href="/register"><button class="launch-button">Sign Up</button></a> 
-				</form>
-
+  
+    <div class="row">
+          <div class="large-12 columns">
+              <div class="panel">
+                <h2>Login</h2>
+                    <form action="" method="POST">
+                      {{ form.csrf_token }}
+                          <div>
+                            {{ form.name.label}}
+                            {{ form.name }}
+                          </div>
+                          <div>
+                            {{ form.password.label }}
+                            {{ form.password }}
+                          </div>
+                      <input type="submit" value="Login">
+                    </form>
+              </div>
           </div>
-      </div>
-  </div>
+    </div>
 
-<!-- 
-<script src="{{ url_for('static', filename='js/vendor/jquery.min.js') }}"></script>
-  <script src="{{ url_for('static', filename='js/foundation.js') }}"></script>
-  <script>
-    $(document).foundation();
-  </script> 
--->
+    <!--
+    <script src="{{ url_for('static', filename='js/vendor/jquery.min.js') }}"></script>
+      <script src="{{ url_for('static', filename='js/foundation.js') }}"></script>
+      <script>
+        $(document).foundation();
+      </script>
+    -->
 
 </body>
 </html>
