@@ -3,6 +3,7 @@ from flask.ext.mongoengine import MongoEngine
 from flask.ext.login import LoginManager
 from flask.ext.mongoengine.wtf import model_form
 from wtforms import PasswordField
+from flask import redirect
 import requests
 
 app = Flask(__name__)
@@ -28,6 +29,13 @@ class User(db.Document):
   def get_id(self):
     return self.name
 
+class Book(db.Document):
+    user_name = db.StringField(required=True)
+    book_name = db.StringField(required=True)
+    price = db.DoubleField(required=True)
+    contact_info = db.StringField(required=True)
+    description = db.StringField
+
 UserForm = model_form(User)
 UserForm.password = PasswordField('password')
 
@@ -44,7 +52,7 @@ def home():
     form = UserForm(request.form)
     if request.method == 'POST' and form.validate():
         user = User(name=form.name.data,password=form.password.data)
-        login_user(user)
+        load_user(user)
         return render_template("booklist.html")
 
     return render_template('login.html', form=form)
@@ -78,11 +86,10 @@ def book(id):
 @app.route("/sell/",methods=["POST,GET"])
 def sell():
     if request.method=="POST":
-        name=request.form["name"]
-        department=request.form["dep"]
-        price=request.form("price")
-        isbn=request.form("price")
-        return render_template("confirm.html")
+        new_book=Book(request.form["user_name"],request.form["book_name"],request.form["price"],
+                      request.form["contactinfo"],request.form["description"])
+        new_book.save()
+        return render_template("booklist.html")
     else:
         return render_template("sell.html")
 
