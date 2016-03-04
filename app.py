@@ -3,6 +3,7 @@ from flask.ext.mongoengine import MongoEngine
 from flask.ext.login import LoginManager, login_user, logout_user
 from flask.ext.mongoengine.wtf import model_form
 from wtforms import PasswordField
+from flask import redirect
 import requests
 
 app = Flask(__name__)
@@ -29,12 +30,13 @@ class User(db.Document):
   def get_id(self):
     return self.name
 
-#move to another file
 class Book(db.Document):
-	name = db.StringField(required=True)
-	department = db.StringField(required=True)
-	price = db.StringField(required=True)
-	isbn = db.StringField(required=True)
+    user_name = db.StringField(required=True)
+    book_name = db.StringField(required=True)
+    price = db.DoubleField(required=True)
+    contact_info = db.StringField(required=True)
+    description = db.StringField
+
 
 UserForm = model_form(User)
 UserForm.password = PasswordField('password')
@@ -70,6 +72,10 @@ def registration():
   return render_template("register.html", form=form)
 
 @app.route("/booklist/")
+def getBooks():
+    listOfBooks = Books.objects()
+    return render_template("booklist.html", listOfBooks = listOfBooks)
+
 @login_required
 def search():
   return render_template("booklist.html")
@@ -108,7 +114,6 @@ def bookinfo():
 def logout():
 	logout_user()
 	return redirect("/")
-
 
 
 app.run(debug=True)
