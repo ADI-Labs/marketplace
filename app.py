@@ -95,17 +95,16 @@ def book(id):
   data=id
   return render_template("book.html",api_data=data)
 
-@app.route("/sell",methods=["POST","GET"])
-@login_required
+@app.route("/sell/",methods=["POST","GET"])
 def sell():
   form = BookForm(request.form)
   if request.method=="POST" and form.validate():
-    new_book = Book(user_name = form.user_name.data, 
-    book_name = form.book_name.data, price=form.price.data,
-    contact_info=form.contact_info.data, description=form.description.data)
+    book = Book(user_name=form.user_name.data, book_name=form.book_name.data, price=form.price.data,
+                contact_info=form.contact_info.data, description=form.description.data)
+    book.save()
     return render_template("confirm.html")
   else:
-    return render_template("sell.html", form=form)
+    return render_template("sell.html",form=form)
 
 @app.route("/bookinfo/")
 @login_required
