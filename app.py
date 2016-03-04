@@ -1,6 +1,6 @@
 from flask import Flask,  render_template, request, redirect
 from flask.ext.mongoengine import MongoEngine
-from flask.ext.login import LoginManager, login_user, logout_user
+from flask.ext.login import LoginManager, login_user, logout_user, login_required
 from flask.ext.mongoengine.wtf import model_form
 from wtforms import PasswordField
 from flask import redirect
@@ -33,7 +33,7 @@ class User(db.Document):
 class Book(db.Document):
     user_name = db.StringField(required=True)
     book_name = db.StringField(required=True)
-    price = db.DoubleField(required=True)
+    price = db.StringField(required=True)
     contact_info = db.StringField(required=True)
     description = db.StringField
 
