@@ -70,16 +70,23 @@ def registration():
   return render_template("register.html", form=form)
 
 @app.route("/booklist/")
+def getBooks():
+    listOfBooks = Books.objects()
+    return render_template("booklist.html", listOfBooks = listOfBooks)
+
 @login_required
 def search():
         return render_template("booklist.html")
 
-@app.route("/booklist/<id>")
-def s(id):
-    if request.method=="POST":
-        data=id
-        return render_template("booklist.html",api_data=data)
-    return redirect("/booklist")
+
+
+
+# @app.route("/booklist/<id>")
+# def s(id):
+#     if request.method=="POST":
+#         data=id
+#         return render_template("booklist.html",api_data=data)
+#     return redirect("/booklist")
 
 @app.route("/book/<id>")
 @login_required
