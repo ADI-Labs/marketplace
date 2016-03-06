@@ -43,13 +43,8 @@ class User(db.Document):
 
 class Book(db.Document):
     user_name = db.StringField(required=True)
-    book_name = db.StringField(required=True)
     price = db.StringField(required=True)
     contact_info = db.StringField(required=True)
-<<<<<<< HEAD
-    description = db.StringField()
-    image = db.StringField()
-
 =======
     description = db.StringField(required=True)
 >>>>>>> 5016468f7acc03772652ba871dae629d2e19aa4e
