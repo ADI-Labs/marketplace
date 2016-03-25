@@ -17,7 +17,7 @@ app.config['WTF_CSRF_ENABLED'] = True
 db = MongoEngine(app)
 
 from .models.user import User
-
+from .models.book import Book
 login_manager = LoginManager()
 login_manager.init_app(app)
 
@@ -56,31 +56,21 @@ def registration():
 
   return render_template("register.html", form=form)
 
-@app.route("/booklist")
+@app.route("/booklist", methods = ["POST", "GET"])
 @login_required
 def getBooks():
-  print("books")
-  listOfBooks = Book.objects()
-  return render_template("booklist.html", listOfBooks = listOfBooks)
+  if request.method == "POST":
+    id=request.form["search"]
+    return redirect("/booklist/" + id)
+  else:
+    print("books")
+    listOfBooks = Book.objects()
+    return render_template("booklist.html", listOfBooks = listOfBooks)
 
 
 @login_required
 def search():
   return render_template("booklist.html")
-
-@app.route("/booklist/<id>")
-@login_required
-def s(id):
-  if request.method=="POST":
-    data=id
-    return render_template("booklist.html",api_data=data)
-  return redirect("/booklist")
-
-@app.route("/book/<id>")
-@login_required
-def book(id):
-  data=id
-  return render_template("book.html",api_data=data)
 
 @app.route("/sell/",methods=["POST","GET"])
 def sell():
@@ -104,6 +94,21 @@ def bookinfo(id):
 def logout():
 	logout_user()
 	return redirect("/")
+
+@app.route("/booklist/<id>",methods=["POST","GET"])
+@login_required
+def search(id):
+  if request.method == "POST":
+    id=request.form["search"]
+    return redirect("/booklist/" + id)
+
+  else:
+    listOfBooks = Book.objects()
+    items=[]
+    for book in listOfBooks:
+      if(id.lower() in book.book_name.lower()):
+        items.append(book)
+    return render_template("booklist.html",listOfBooks = items)
 
 app.run(debug=True)
 

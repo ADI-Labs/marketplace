@@ -2,14 +2,16 @@
     {% block title %} Booklist {% endblock %}
         {% block body %}
         <!--Search Bar-->
-            <div class="row">
-                <div class="col-lg-6">
-                    <input type="text" class="form-control" placeholder="Search for a book here">
-                    <span class="input-group-btn">
-                        <button class="btn btn-default" type="button">Go!</button>
-                    </span>
+	    <form action="/booklist" method="post">
+                <div class="row">
+                    <div class="col-lg-6">		    
+                        <input type="text" class="form-control" placeholder="Search for a book here" name="search">
+                    	<span class="input-group-btn">
+                        	<button class="btn btn-default" type="button">Go!</button>
+                        </span>                   
+                    </div>
                 </div>
-            </div>
+             </form>
 
             <!--This will end up being what flask iterates, adding the list of available books to the page-->
             <div class="row">
