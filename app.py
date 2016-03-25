@@ -6,6 +6,7 @@ from wtforms import PasswordField
 from flask import redirect
 import requests
 
+
 app = Flask(__name__)
 app.config["DEBUG"] = True      
 app.config['MONGODB_SETTINGS'] = { 'db' : 'books' }
@@ -52,10 +53,12 @@ def load_user(name):
 @app.route("/", methods=['GET','POST'])
 def home():
   form = UserForm(request.form)
+  print('before if')
   if request.method == 'POST' and form.validate():
-    user = User(name=form.name.data,password=form.password.data)
-    login_user(user)
-    return redirect('/booklist')
+    user = User.objects(name=form.name.data,password=form.password.data).first()
+    if user:
+      login_user(user)
+      return redirect('/booklist')
 
   return render_template('login.html', form=form)
 
@@ -72,8 +75,10 @@ def registration():
 @app.route("/booklist")
 @login_required
 def getBooks():
-    listOfBooks = Book.objects()
-    return render_template("booklist.html", listOfBooks = listOfBooks)
+  print("books")
+  listOfBooks = Book.objects()
+  return render_template("booklist.html", listOfBooks = listOfBooks)
+
 
 @login_required
 def search():
@@ -100,21 +105,21 @@ def sell():
     book = Book(user_name=form.user_name.data, book_name=form.book_name.data, price=form.price.data,
                 contact_info=form.contact_info.data, description=form.description.data)
     book.save()
-    return render_template("confirm.html")
+    return redirect('/booklist')
   else:
     return render_template("sell.html",form=form)
 
-@app.route("/bookinfo/")
-@login_required
-def bookinfo():
-  return render_template("bookinfo.html")
+@app.route("/bookinfo/<id>")
+def bookinfo(id):
+  books=Book.objects(book_name = id)
+  return render_template("bookinfo.html",book=books[0])
+
 
 @app.route("/logout")
 @login_required
 def logout():
 	logout_user()
 	return redirect("/")
-
 
 app.run(debug=True)
 
