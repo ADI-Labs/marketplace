@@ -61,12 +61,16 @@ def registration():
 
   return render_template("register.html", form=form)
 
-@app.route("/booklist")
+@app.route("/booklist", methods = ["POST", "GET"])
 @login_required
 def getBooks():
-  print("books")
-  listOfBooks = Book.objects()
-  return render_template("booklist.html", listOfBooks = listOfBooks)
+  if request.method == "POST":
+    id=request.form["search"]
+    return redirect("/booklist/" + id)
+  else:
+    print("books")
+    listOfBooks = Book.objects()
+    return render_template("booklist.html", listOfBooks = listOfBooks)
 
 
 @login_required
@@ -111,7 +115,6 @@ def upload_file():
     </form>
     '''   
 
-
 @app.route("/sell/",methods=["POST","GET"])
 def sell():
   form = BookForm(request.form)
@@ -148,5 +151,20 @@ def bookinfo(id):
 def logout():
   logout_user()
   return redirect("/")
+
+@app.route("/booklist/<id>",methods=["POST","GET"])
+@login_required
+def search(id):
+  if request.method == "POST":
+    id=request.form["search"]
+    return redirect("/booklist/" + id)
+
+  else:
+    listOfBooks = Book.objects()
+    items=[]
+    for book in listOfBooks:
+      if(id.lower() in book.book_name.lower()):
+        items.append(book)
+    return render_template("booklist.html",listOfBooks = items)
 
 app.run(debug=True)
