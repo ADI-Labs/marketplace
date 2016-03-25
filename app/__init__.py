@@ -1,3 +1,5 @@
+from __future__ import absolute_import
+
 from flask import Flask,  render_template, request, redirect
 from flask.ext.mongoengine import MongoEngine
 from flask.ext.login import LoginManager, login_user, logout_user, login_required
@@ -14,28 +16,10 @@ app.config['SECRET_KEY'] = 'secretkey'
 app.config['WTF_CSRF_ENABLED'] = True
 db = MongoEngine(app)
 
+from .models.user import User
+
 login_manager = LoginManager()
 login_manager.init_app(app)
-
-class User(db.Document):
-  name = db.StringField(required=True,unique=True)
-  password = db.StringField(required=True)
-  def is_authenticated(self):
-    users = User.objects(name=self.name, password=self.password)
-    return len(users) != 0
-  def is_active(self):
-    return True
-  def is_anonymous(self):
-    return False
-  def get_id(self):
-    return self.name
-
-class Book(db.Document):
-    user_name = db.StringField(required=True)
-    book_name = db.StringField(required=True)
-    price = db.StringField(required=True)
-    contact_info = db.StringField(required=True)
-    description = db.StringField(required=True)
 
 UserForm = model_form(User)
 UserForm.password = PasswordField('password')
