@@ -10,7 +10,8 @@
 <body>
 
     <div id="wrapper">
-        <!--Navbar at the side -->
+        <!-- <Navbar at the side> -->
+
         <div id="sidebar-wrapper">
             <ul class="sidebar-nav">
                 <li class="sidebar-brand">
@@ -25,26 +26,34 @@
                     <a href="/sell/">Sell Books</a>
                 </li>
                 <li>
-                    <a href="/booklist/">Purchase Books</a>
-
+                    <a href="/booklist">Purchase Books</a>
                 </li>
                 <li>
-                    <a href="#">Something else here</a>
+                    <a href="/myBooks">My Books</a>
                 </li>
             </ul>
         </div>
 
+        <!-- <nav class="navbar navbar-default navbar-fixed-top navbar-inverse">
+            <div class="container">
+    
+            </div>
+        </nav> -->
+
          <!--Header for page -->
         <div id = "page-content-wrapper">
-
-            <div class = "jumbotron">
-                <h1>CU Marketplace</h1>
-            </div>
+            <!-- <div class="container"> -->
+                <div class = "jumbotron">
+                    <h1>CU Marketplace</h1>
+                </div>
+            <!-- </div> -->
+           
         </div>
 
-        {% block body %} {% endblock %}
-    </div>
 
+        {% block body %} {% endblock %}
+       
+       
 
 </body>
 </html>
