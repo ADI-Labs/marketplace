@@ -1,5 +1,3 @@
-from __future__ import absolute_import
-
 from flask import Flask,  render_template, request, redirect
 from flask.ext.mongoengine import MongoEngine
 from flask.ext.login import LoginManager, login_user, logout_user, login_required
@@ -16,11 +14,28 @@ app.config['SECRET_KEY'] = 'secretkey'
 app.config['WTF_CSRF_ENABLED'] = True
 db = MongoEngine(app)
 
-from .models.user import User
-from .models.book import Book
-
 login_manager = LoginManager()
 login_manager.init_app(app)
+
+class User(db.Document):
+  name = db.StringField(required=True,unique=True)
+  password = db.StringField(required=True)
+  def is_authenticated(self):
+    users = User.objects(name=self.name, password=self.password)
+    return len(users) != 0
+  def is_active(self):
+    return True
+  def is_anonymous(self):
+    return False
+  def get_id(self):
+    return self.name
+
+class Book(db.Document):
+    user_name = db.StringField(required=True)
+    book_name = db.StringField(required=True)
+    price = db.StringField(required=True)
+    contact_info = db.StringField(required=True)
+    description = db.StringField(required=True)
 
 UserForm = model_form(User)
 UserForm.password = PasswordField('password')
@@ -70,7 +85,6 @@ def getBooks():
 def search():
   return render_template("booklist.html")
 
-#rename this to booklist
 @app.route("/booklist/<id>")
 @login_required
 def s(id):
@@ -96,23 +110,22 @@ def sell():
   else:
     return render_template("sell.html",form=form)
 
-# @app.route("/bookinfo/<id>")
-# @login_required
-# def bookinfo(id):
-#   id = Book.objects(book_name=book_name)
-#   return render_template("bookinfo.html", api_data = id)
+@app.route("/bookinfo/<id>")
+@login_required
+def bookinfo(id):
+  # books=Book.objects(book_name = id)
+  # return render_template("bookinfo.html",book=books[0])
+book_url = "https://www.googleapis.com/books/v1/volumes/" + id
+book_dict = requests.get(book_url).json()
+new_fav = FavoriteBook(author=book_dict["volumeInfo"]["authors"][0], title=book_dict["volumeInfo"]["title"], link=book_url)
+new_fav.save()
+return render_template("confirm.html", api_data=book_dict)
 
 
 @app.route("/logout")
 def logout():
 	logout_user()
 	return redirect("/")
-
-#   book_url = "https://www.googleapis.com/books/v1/volumes/" + id
-# book_dict = requests.get(book_url).json()
-# new_fav = FavoriteBook(author=book_dict["volumeInfo"]["authors"][0], title=book_dict["volumeInfo"]["title"], link=book_url)
-# new_fav.save()
-# return render_template("confirm.html", api_data=book_dict)
 
 
 app.run(debug=True)
