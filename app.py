@@ -50,6 +50,7 @@ def load_user(name):
   else:
     return None
 
+#this should actually be called login
 @app.route("/", methods=['GET','POST'])
 def home():
   form = UserForm(request.form)
@@ -109,17 +110,18 @@ def sell():
   else:
     return render_template("sell.html",form=form)
 
-@app.route("/bookinfo/<id>")
+@app.route("/bookinfo/")
+@login_required
 def bookinfo(id):
   books=Book.objects(book_name = id)
   return render_template("bookinfo.html",book=books[0])
 
 
 @app.route("/logout")
-@login_required
 def logout():
 	logout_user()
 	return redirect("/")
+
 
 app.run(debug=True)
 
