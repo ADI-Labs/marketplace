@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Login Screen</title>
+  <meta name="description" content="Login Screen">
+  <meta name="author" content="ADI Labs Marketplace">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link rel="stylesheet" href="../static/css/login.css">
+
+</head>
+<body>
+  
+    <h2>Login</h2>
+  
+      <form action="" method="POST" id="form">
+          {{ form.csrf_token }}
+          <div>
+            {{ form.name.label}}
+            {{ form.name }}
+          </div>
+          <div>
+            {{ form.password.label }}
+            {{ form.password }}
+          </div>
+          <input type="submit" value="Login">
+        </form>
+                    
+    <!--
+    <script src="{{ url_for('static', filename='js/vendor/jquery.min.js') }}"></script>
+      <script src="{{ url_for('static', filename='js/foundation.js') }}"></script>
+      <script>
+        $(document).foundation();
+      </script>
+    -->
+
+</body>
+</html>
