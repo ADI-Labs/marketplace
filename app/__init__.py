@@ -106,8 +106,12 @@ def search(id):
     listOfBooks = Book.objects()
     items=[]
     for book in listOfBooks:
-      if(id.lower() in book.book_name.lower()):
-        items.append(book)
+        if(id.lower() in book.book_name.lower()):
+            items.append(book)
+    for book in listOfBooks:
+        if(book not in items and id.lower() in book.description.lower()):
+            items.append(book)
+
     return render_template("booklist.html",listOfBooks = items)
 
 app.run(debug=True)
