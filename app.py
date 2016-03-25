@@ -16,7 +16,6 @@ db = MongoEngine(app)
 login_manager = LoginManager()
 login_manager.init_app(app)
 
-#Move to another file
 class User(db.Document):
   name = db.StringField(required=True,unique=True)
   password = db.StringField(required=True)
