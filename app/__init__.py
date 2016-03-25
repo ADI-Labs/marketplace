@@ -78,11 +78,14 @@ def search():
 #rename this to booklist
 @app.route("/booklist/<id>")
 @login_required
-def s(id):
-  if request.method=="POST":
-    data=id
-    return render_template("booklist.html",api_data=data)
-  return redirect("/booklist")
+def booklist(id):
+  book = Book.objects(book_name=id).first()
+  #id = Book.objects(name=Book.book_name)
+  if book:
+    return render_template("bookinfo.html", book=book)
+  else:
+    return 'not found'
+
 
 @app.route("/book/<id>")
 @login_required
@@ -127,6 +130,11 @@ def search(id):
       if(id.lower() in book.book_name.lower()):
         items.append(book)
     return render_template("booklist.html",listOfBooks = items)
+
+# @app.route("/booklist/<id>", meththod = ["POST", "GET"])
+# @login_required
+# def bookInfo(id):
+
 
 
 app.run(debug=True)

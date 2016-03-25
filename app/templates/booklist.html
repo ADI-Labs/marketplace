@@ -2,19 +2,8 @@
     {% block title %} Booklist {% endblock %}
         {% block body %}
         <!--Search Bar-->
-<<<<<<< HEAD
-            <div class="row">
-                <form>
-                    <div class="col-lg-6">
-                        <input type="text" class="form-control" placeholder="Search for a book here">
-                        <span class="input-group-btn">
-                            <button class="btn btn-default" type="button">Go!</button>
-                        </span>
-                    </div>
-                </form>
-            </div>
-=======
-	    <form action="/booklist" method="post">
+
+	    <form action="/booklist" method="POST">
                 <div class="row">
                     <div class="col-lg-6">		    
                         <input type="text" class="form-control" placeholder="Search for a book here" name="search">
@@ -24,7 +13,6 @@
                     </div>
                 </div>
              </form>
->>>>>>> upstream/master
 
             <!--This will end up being what flask iterates, adding the list of available books to the page-->
             <div class="row">
@@ -38,7 +26,7 @@
                         <p>{{ book.contact_info }}</p>
                         <p>{{ book.price }}</p>
                         <!--This GET method will pull the book information and redirect the user to an info page-->
-                      <p><a class = "btn btn-primary" role="button" methods="POST" href="/booklist/{{book.book_name.id}}">Buy now</a></p>
+                      <p><a class = "btn btn-primary" role="button" methods="POST" href="/booklist/{{book.book_name}}" action="booklist">Buy now</a></p>
                     </div>
                 </div>
                 {% endfor %}
