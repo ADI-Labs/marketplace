@@ -58,17 +58,22 @@ def registration():
 
   return render_template("register.html", form=form)
 
-@app.route("/booklist")
+@app.route("/booklist", methods = ["POST", "GET"])
 @login_required
 def getBooks():
-  print("books")
-  listOfBooks = Book.objects()
-  return render_template("booklist.html", listOfBooks = listOfBooks)
+  if request.method == "POST":
+    id=request.form["search"]
+    return redirect("/booklist/" + id)
+  else:
+    print("books")
+    listOfBooks = Book.objects()
+    return render_template("booklist.html", listOfBooks = listOfBooks)
 
 
 @login_required
 def search():
   return render_template("booklist.html")
+
 
 #rename this to booklist
 @app.route("/booklist/<id>")
@@ -108,11 +113,20 @@ def logout():
 	logout_user()
 	return redirect("/")
 
-#   book_url = "https://www.googleapis.com/books/v1/volumes/" + id
-# book_dict = requests.get(book_url).json()
-# new_fav = FavoriteBook(author=book_dict["volumeInfo"]["authors"][0], title=book_dict["volumeInfo"]["title"], link=book_url)
-# new_fav.save()
-# return render_template("confirm.html", api_data=book_dict)
+@app.route("/booklist/<id>",methods=["POST","GET"])
+@login_required
+def search(id):
+  if request.method == "POST":
+    id=request.form["search"]
+    return redirect("/booklist/" + id)
+
+  else:
+    listOfBooks = Book.objects()
+    items=[]
+    for book in listOfBooks:
+      if(id.lower() in book.book_name.lower()):
+        items.append(book)
+    return render_template("booklist.html",listOfBooks = items)
 
 
 app.run(debug=True)
