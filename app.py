@@ -23,11 +23,11 @@ db = MongoEngine(app)
 login_manager = LoginManager()
 login_manager.init_app(app)
 
+
 def allowed_file(filename):
     return '.' in filename and \
-           filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONSs
+           filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
 
-#Move to another file
 class User(db.Document):
   name = db.StringField(required=True,unique=True)
   password = db.StringField(required=True)
@@ -46,11 +46,11 @@ class Book(db.Document):
     price = db.StringField(required=True)
     contact_info = db.StringField(required=True)
     description = db.StringField(required=True)
+    book_name = db.StringField(required=True)
     image = db.StringField()
 
 UserForm = model_form(User)
 UserForm.password = PasswordField('password')
-
 BookForm = model_form(Book)
 
 @login_manager.user_loader
@@ -70,7 +70,7 @@ def home():
     if user:
       login_user(user)
       return redirect('/booklist')
-
+      
   return render_template('login.html', form=form)
 
 
