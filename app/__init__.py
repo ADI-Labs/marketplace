@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, redirect, send_from_directory, url_for
+from __future__ import absolute_import
 from flask.ext.mongoengine import MongoEngine
 from flask.ext.login import LoginManager, login_user, logout_user, login_required
 from flask.ext.mongoengine.wtf import model_form
@@ -19,6 +20,8 @@ app.config['SECRET_KEY'] = 'secretkey'
 app.config['WTF_CSRF_ENABLED'] = True
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 db = MongoEngine(app)
+
+from .models.user import User
 
 login_manager = LoginManager()
 login_manager.init_app(app)
