@@ -39,6 +39,7 @@ def load_user(name):
   else:
     return None
 
+#this should actually be called login
 @app.route("/", methods=['GET','POST'])
 def home():
   form = UserForm(request.form)
@@ -77,13 +78,16 @@ def getBooks():
 def search():
   return render_template("booklist.html")
 
+#rename this to booklist
 @app.route("/booklist/<id>")
 @login_required
-def s(id):
-  if request.method=="POST":
-    data=id
-    return render_template("booklist.html",api_data=data)
-  return redirect("/booklist")
+def booklist(id):
+  book = Book.objects(book_name=id).first()
+  #id = Book.objects(name=Book.book_name)
+  if book:
+    return render_template("bookinfo.html", book=book)
+  else:
+    return 'not found'
 
 @app.route("/book/<id>")
 @login_required
@@ -94,7 +98,6 @@ def book(id):
 def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
-
 
 @app.route("/sell/",methods=["POST","GET"])
 def sell():
@@ -126,9 +129,15 @@ def bookinfo(id):
   books=Book.objects(book_name = id)
   return render_template("bookinfo.html",book=books[0])
 
+# @app.route("/bookinfo/<id>")
+# @login_required
+# def bookinfo(id):
+#   id = Book.objects(book_name=book_name)
+#   return render_template("bookinfo.html", api_data = id)
+
+
 
 @app.route("/logout")
-@login_required
 def logout():
   logout_user()
   return redirect("/")
@@ -144,8 +153,18 @@ def search(id):
     listOfBooks = Book.objects()
     items=[]
     for book in listOfBooks:
-      if(id.lower() in book.book_name.lower()):
-        items.append(book)
+        if(id.lower() in book.book_name.lower()):
+            items.append(book)
+    for book in listOfBooks:
+        if(book not in items and id.lower() in book.description.lower()):
+            items.append(book)
+
     return render_template("booklist.html",listOfBooks = items)
+
+# @app.route("/booklist/<id>", meththod = ["POST", "GET"])
+# @login_required
+# def bookInfo(id):
+
+
 
 app.run(debug=True)

@@ -15,18 +15,17 @@
             <ul class="sidebar-nav">
                 <li class="sidebar-brand">
                    <a href="#">
-                   {% if current_user.is_authenticated %} Hi {{ current_user.name }}! {% endif %}
+                        {% if current_user.is_authenticated %} Hi {{ current_user.name }}! {% endif %}
                     </a>
                 </li>
                 <li>
                     <a href="/logout" >Logout</a>
                 </li>
                 <li>
-                    <a href="/sell/">Sell Books</a>
+                    <a href="/sell">Sell Books</a>
                 </li>
                 <li>
-                    <a href="/booklist/">Purchase Books</a>
-
+                    <a href="/booklist" >Purchase Books</a>
                 </li>
                 <li>
                     <a href="#">Something else here</a>
