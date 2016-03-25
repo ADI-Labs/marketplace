@@ -15,11 +15,11 @@
             <div class="row">
                 <div class="col-md-4">
                     {% for book in listOfBooks %}
-                    <img src=book.image alt="...">
+                    <img src={{book.image}} alt="...">
                     <div class="caption">
-                        <h3>{{book.book_name}}</h3>
+                        <h3>{{ book.book_name }}</h3>
                         <p>{{ book.description }}</p>
-                        <p>{{book.user_name}}</p>
+                        <p>{{ book.user_name }}</p>
                         <p>{{ book.contact_info }}</p>
                         <p>{{ book.price }}</p>
                         <!--This GET method will pull the book information and redirect the user to an info page-->
