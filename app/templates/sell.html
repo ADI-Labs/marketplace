@@ -2,33 +2,35 @@
 
 {% block title %} Sell {% endblock %}
 
-	{% block body %}
-	    <h2>Sell</h2>
-	    <form action="" method="POST" class="form-horizontal">
-	        {{ form.csrf_token }}
-	        <div class="form-group">
-	            <label class="control-label col-sm-2" for="email">{{form.user_name.label}}</label>
-	            {{ form.user_name }} 
-	        </div>
-	        <div>
-	            {{ form.book_name.label }}
-	            {{ form.book_name }}
-	        </div>
-	        <div>
-	            {{ form.price.label }}
-	            {{ form.price }}
-	        </div>
-	        <div>
-	            {{ form.contact_info.label }}
-	            {{ form.contact_info }}
-	        </div>
-	        <div>
-	            {{ form.description.label }}
-	            {{ form.description }}
-	        </div>
-	        <input type="submit" value="Sell">
-	    </form>
-	<!--     <form class="form-horizontal" role="form">
+  {% block body %}
+      <h2>Sell</h2>
+      <form action="" method="POST" enctype=multipart/form-data class="form-horizontal">
+          {{ form.csrf_token }}
+          <div class="form-group">
+              <label class="control-label col-sm-2" for="email">{{form.user_name.label}}</label>
+              {{ form.user_name }} 
+          </div>
+          <div>
+              {{ form.book_name.label }}
+              {{ form.book_name }}
+          </div>
+          <div>
+              {{ form.price.label }}
+              {{ form.price }}
+          </div>
+          <div>
+              {{ form.contact_info.label }}
+              {{ form.contact_info }}
+          </div>
+          <div>
+              {{ form.description.label }}
+              {{ form.description }}
+          </div>
+          <div>
+            <input type=file name=file>
+          <input type="submit" value="Sell">
+      </form>
+  <!--     <form class="form-horizontal" role="form">
   <div class="form-group">
     <label class="control-label col-sm-2" for="email">Email:</label>
     <div class="col-sm-10">
@@ -54,4 +56,4 @@
     </div>
   </div>
 </form -->
-	{% endblock %}
+  {% endblock %}
