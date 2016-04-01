@@ -35,20 +35,21 @@
     </nav>
 
     <div id="landing">
-      <h2>Login</h2>
-
-      <form action="" method="POST" id="form">
-          {{ form.csrf_token }}
-          <div>
-            {{ form.name.label}}
-            {{ form.name }}
-          </div>
-          <div>
-            {{ form.password.label }}
-            {{ form.password }}
-          </div>
-          <input type="submit" value="Login">
-        </form>
+      <h1>Login</h1>
+      <div class="container">
+        <form action="" method="POST" id="form">
+            {{ form.csrf_token }}
+            <div>
+              <h2>Username</h2>
+              {{ form.name(class="form-control", placeholder="Enter Username") }}
+            </div>
+            <div>
+              <h2>Password</h2>
+              {{ form.password(class="form-control", placeholder="Password") }}
+            </div>
+            <input type="submit" value="Login">
+          </form>
+        </div>
       </div>
                     
     <!--
@@ -58,7 +59,7 @@
         $(document).foundation();
       </script>
     -->
-    <a href = "/register" class="btn btn-default">Register Here</a>
+    <a href = "/register" class="btn btn-default" id="button">Register Here</a>
   </div>
 </body>
 </html>
