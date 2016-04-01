@@ -6,3 +6,4 @@ class Book(db.Document):
     price = db.StringField(required=True)
     contact_info = db.StringField(required=True)
     description = db.StringField(required=True)
+    image = db.StringField(required=False)
