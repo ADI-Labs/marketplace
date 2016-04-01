@@ -165,5 +165,11 @@ def myBooks():
   list_of_my_books = Book.objects()
   return render_template("myBooks.html", list_of_my_books = list_of_my_books)
 
+@app.route("/delete/<id>")
+@login_required
+def delete(id):
+  deleted_book = Book.objects(book_name=id)[0].book_name
+  Book.objects(book_name=id).delete()
+  return render_template("delete.html", deleted_book = deleted_book)
 
 app.run(debug=True)
