@@ -21,7 +21,7 @@
                                 <p>{{ book.contact_info }}</p>
                                 <p>{{ book.price }}</p>
 		                        <!--This GET method will remove a listing from the database-->
-                     			<p><a class = "btn btn-primary" role="button" methods="POST" action="booklist">Delete Listing</a></p>
+                     			<p><a class = "btn btn-primary" role="button" methods="POST" action="booklist" href="/delete/{{book.book_name}}">Delete Listing</a></p>
 		                    </div>
 	                    </div>
                     {% endif %}

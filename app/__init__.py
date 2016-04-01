@@ -76,17 +76,6 @@ def getBooks():
 def search():
   return render_template("booklist.html")
 
-#rename this to booklist
-@app.route("/booklist/<id>")
-@login_required
-def booklist(id):
-  book = Book.objects(book_name=id).first()
-  #id = Book.objects(name=Book.book_name)
-  if book:
-    return render_template("bookinfo.html", book=book)
-  else:
-    return 'not found'
-
 @app.route("/book/<id>")
 @login_required
 def book(id):
@@ -102,6 +91,7 @@ def sell():
   form = BookForm(request.form)
   if request.method=="POST":
     form.user_name.data = current_user.name
+    form.contact_info.data = current_user.contact_info
   if form.validate():
     book = Book(user_name=form.user_name.data, book_name=form.book_name.data, price=form.price.data,
                 contact_info=form.contact_info.data, description=form.description.data)
