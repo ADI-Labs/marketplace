@@ -164,7 +164,8 @@ def search(id):
 @app.route("/myBooks/")
 @login_required
 def myBooks():
-  return render_template("myBooks.html")
+  list_of_my_books = Book.objects()
+  return render_template("myBooks.html", list_of_my_books = list_of_my_books)
 
 
 
