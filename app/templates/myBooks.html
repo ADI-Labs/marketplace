@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+    {% block title %} My Books {% endblock %}
+        {% block body %}
+
+        	<div class="page-header">
+        		<h1>My Books</h1>
+    		</div>
+
+            <!--This will end up being what flask iterates, adding the list of available books to the page-->
+            <div class="row">
+                <div class="col-md-4">
+                    {% for book in list_of_my_books %}
+                    	{% if current_user.name == book.user_name %}
+		                    <div class="caption">
+		                        <h3>{{ book.book_name }}</h3>
+		                        <p>{{ book.description }}</p>
+		                        <p>{{ book.user_name }}</p>
+		                        <p>{{ book.contact_info }}</p>
+		                        <p>{{ book.price }}</p>
+		                        <p><img src={{book.image}} alt="..."></p>
+		                    </div>
+	                    {% endif %}
+                </div>
+                {% endfor %}
+            </div>
+        {% endblock%}

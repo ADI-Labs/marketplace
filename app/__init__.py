@@ -161,9 +161,11 @@ def search(id):
 
     return render_template("booklist.html",listOfBooks = items)
 
-# @app.route("/booklist/<id>", meththod = ["POST", "GET"])
-# @login_required
-# def bookInfo(id):
+@app.route("/myBooks/")
+@login_required
+def myBooks():
+  list_of_my_books = Book.objects()
+  return render_template("myBooks.html", list_of_my_books = list_of_my_books)
 
 
 
