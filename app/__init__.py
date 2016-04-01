@@ -76,12 +76,6 @@ def getBooks():
 def search():
   return render_template("booklist.html")
 
-@app.route("/book/<id>")
-@login_required
-def book(id):
-  data=id
-  return render_template("book.html",api_data=data)
-
 def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
