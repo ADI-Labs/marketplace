@@ -76,17 +76,6 @@ def getBooks():
 def search():
   return render_template("booklist.html")
 
-#rename this to booklist
-@app.route("/booklist/<id>")
-@login_required
-def booklist(id):
-  book = Book.objects(book_name=id).first()
-  #id = Book.objects(name=Book.book_name)
-  if book:
-    return render_template("bookinfo.html", book=book)
-  else:
-    return 'not found'
-
 @app.route("/book/<id>")
 @login_required
 def book(id):
