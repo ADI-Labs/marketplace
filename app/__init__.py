@@ -2,7 +2,7 @@ from __future__ import absolute_import
 
 from flask import Flask, render_template, request, redirect, url_for, send_from_directory
 from flask.ext.mongoengine import MongoEngine
-from flask.ext.login import LoginManager, login_user, logout_user, login_required
+from flask.ext.login import LoginManager, login_user, logout_user, login_required, current_user
 from flask.ext.mongoengine.wtf import model_form
 from wtforms import PasswordField
 from werkzeug import secure_filename
@@ -100,7 +100,9 @@ def allowed_file(filename):
 @app.route("/sell/",methods=["POST","GET"])
 def sell():
   form = BookForm(request.form)
-  if request.method=="POST" and form.validate():
+  if request.method=="POST":
+    form.user_name.data = current_user.name
+  if form.validate():
     book = Book(user_name=form.user_name.data, book_name=form.book_name.data, price=form.price.data,
                 contact_info=form.contact_info.data, description=form.description.data)
 
@@ -171,5 +173,13 @@ def delete(id):
   deleted_book = Book.objects(book_name=id)[0].book_name
   Book.objects(book_name=id).delete()
   return render_template("delete.html", deleted_book = deleted_book)
+
+"""
+for text in Book.objects():
+  text.delete()
+
+for guy in User.objects():
+  guy.delete()
+"""
 
 app.run(debug=True)
