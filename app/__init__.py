@@ -102,6 +102,7 @@ def sell():
   form = BookForm(request.form)
   if request.method=="POST":
     form.user_name.data = current_user.name
+    form.contact_info.data = current_user.contact_info
   if form.validate():
     book = Book(user_name=form.user_name.data, book_name=form.book_name.data, price=form.price.data,
                 contact_info=form.contact_info.data, description=form.description.data)
