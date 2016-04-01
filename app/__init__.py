@@ -56,9 +56,12 @@ def home():
 def registration():
   form = UserForm(request.form)
   if request.method == "POST" and form.validate():
-    form.save()
-    return redirect("/")
-
+    # If the username is unique...
+    if(load_user(form.name.data) == None):
+      form.save()
+      return redirect("/")
+    else:
+      return redirect("/register")
   return render_template("register.html", form=form)
 
 @app.route("/booklist", methods = ["POST", "GET"])
