@@ -75,19 +75,10 @@ def getBooks():
     return render_template("booklist.html", listOfBooks = listOfBooks)
 
 
-@login_required
-def search():
-  return render_template("booklist.html")
-
-@app.route("/book/<id>")
-@login_required
-def book(id):
-  data=id
-  return render_template("book.html",api_data=data)
-
 def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
+
 
 @app.route("/sell/",methods=["POST","GET"])
 def sell():
@@ -122,18 +113,12 @@ def bookinfo(id):
   books=Book.objects(book_name = id)
   return render_template("bookinfo.html",book=books[0])
 
-# @app.route("/bookinfo/<id>")
-# @login_required
-# def bookinfo(id):
-#   id = Book.objects(book_name=book_name)
-#   return render_template("bookinfo.html", api_data = id)
-
-
 
 @app.route("/logout")
 def logout():
   logout_user()
   return redirect("/")
+
 
 @app.route("/booklist/<id>",methods=["POST","GET"])
 @login_required
@@ -154,11 +139,13 @@ def search(id):
 
     return render_template("booklist.html",listOfBooks = items)
 
+
 @app.route("/myBooks/", methods=["POST","GET"])
 @login_required
 def myBooks():
   list_of_my_books = Book.objects()
   return render_template("myBooks.html", list_of_my_books = list_of_my_books)
+
 
 @app.route("/delete/<id>")
 @login_required

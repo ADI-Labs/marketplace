@@ -18,17 +18,19 @@
              </form>
 
             <!--This will end up being what flask iterates, adding the list of available books to the page-->
-            <div class="row" id="booklist">
-                {% for book in listOfBooks %}
-                <div class="col-md-4" id="columns">
-                    <div style="display:inline-block;vertical-align:top;">
-                        <p><img src={{book.image}} alt="..."></p>
-                    </div>                    
-                        <h3>{{book.book_name}}</h3>
-                        <p>{{ book.description }}</p>
-                        <p>{{ book.price }}</p>
-                       <p><a class = "btn btn-primary" role="button" methods="POST" href="/booklist/{{book.book_name}}" action="booklist">Buy now</a></p>
+            <div class="container"
+                <div class="row" id="booklist">
+                    {% for book in listOfBooks %}
+                    <div class="center-block" id="columns">
+                        <div style="display:inline-block;vertical-align:top;">
+                            <p><img src={{book.image}} alt="..." width=200px height=auto></p>
+                        </div>                    
+                            <h3>{{book.book_name}}</h3>
+                            <p>{{ book.description }}</p>
+                            <p>{{ book.price }}</p>
+                           <p><a class = "btn btn-primary" role="button" methods="POST" href="/booklist/{{book.book_name}}" action="booklist">Buy now</a></p>
+                    </div>
+                    {% endfor %}
                 </div>
-                {% endfor %}
             </div>
         {% endblock%}
