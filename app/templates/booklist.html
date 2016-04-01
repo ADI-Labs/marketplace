@@ -21,9 +21,9 @@
                     <div class="caption">
                         <h3>{{ book.book_name }}</h3>
                         <p>{{ book.description }}</p>
-                        <p>{{ book.user_name }}</p>
-                        <p>{{ book.contact_info }}</p>
-                        <p>{{ book.price }}</p>
+                        <p>Seller: {{ book.user_name }}</p>
+                        <p>Contact:{{ book.contact_info }}</p>
+                        <p>Price: {{ book.price }}</p>
                         <p><img src={{book.image}} alt="..."></p>
                         <!--This GET method will pull the book information and redirect the user to an info page-->
                       <p><a class = "btn btn-primary" role="button" methods="POST" href="/booklist/{{book.book_name}}" action="booklist">Buy now</a></p>
