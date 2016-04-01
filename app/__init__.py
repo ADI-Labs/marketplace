@@ -43,7 +43,6 @@ def load_user(name):
 @app.route("/", methods=['GET','POST'])
 def home():
   form = UserForm(request.form)
-  print('before if')
   if request.method == 'POST' and form.validate():
     user = User.objects(name=form.name.data,password=form.password.data).first()
     if user:
@@ -69,7 +68,6 @@ def getBooks():
     id=request.form["search"]
     return redirect("/booklist/" + id)
   else:
-    print("books")
     listOfBooks = Book.objects()
     return render_template("booklist.html", listOfBooks = listOfBooks)
 
@@ -161,11 +159,17 @@ def search(id):
 
     return render_template("booklist.html",listOfBooks = items)
 
-@app.route("/myBooks/")
+@app.route("/myBooks/", methods=["POST","GET"])
 @login_required
 def myBooks():
-  return render_template("myBooks.html")
+  list_of_my_books = Book.objects()
+  return render_template("myBooks.html", list_of_my_books = list_of_my_books)
 
-
+@app.route("/delete/<id>")
+@login_required
+def delete(id):
+  deleted_book = Book.objects(book_name=id)[0].book_name
+  Book.objects(book_name=id).delete()
+  return render_template("delete.html", deleted_book = deleted_book)
 
 app.run(debug=True)
