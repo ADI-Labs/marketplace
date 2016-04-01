@@ -143,7 +143,7 @@ def search(id):
 @app.route("/myBooks/", methods=["POST","GET"])
 @login_required
 def myBooks():
-  list_of_my_books = Book.objects()
+  list_of_my_books = Book.objects(user_name = current_user.name)
   return render_template("myBooks.html", list_of_my_books = list_of_my_books)
 
 
