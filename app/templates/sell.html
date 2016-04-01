@@ -7,23 +7,23 @@
       <form action="" method="POST" enctype=multipart/form-data class="form-horizontal">
           {{ form.csrf_token }}
           <div class="form-group">
-              <label class="control-label col-sm-2" for="email">{{form.user_name.label}}</label>
+              <label class="control-label col-sm-2" for="email">Username:</label>
               {{ form.user_name }} 
           </div>
           <div>
-              {{ form.book_name.label }}
+              Book Title:
               {{ form.book_name }}
           </div>
           <div>
-              {{ form.price.label }}
+              Price:
               {{ form.price }}
           </div>
           <div>
-              {{ form.contact_info.label }}
+              Contact Information:
               {{ form.contact_info }}
           </div>
           <div>
-              {{ form.description.label }}
+              Description:
               {{ form.description }}
           </div>
           <div>
