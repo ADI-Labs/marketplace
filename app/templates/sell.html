@@ -6,24 +6,20 @@
       <h2>Sell</h2>
       <form action="" method="POST" enctype=multipart/form-data class="form-horizontal">
           {{ form.csrf_token }}
-          <div class="form-group">
-              <label class="control-label col-sm-2" for="email">Username:</label>
-              {{ form.user_name }} 
+          <div>
+              {{form.book_name.label}}
+              {{ form.book_name }} 
           </div>
           <div>
-              Book Title:
-              {{ form.book_name }}
-          </div>
-          <div>
-              Price:
+              {{ form.price.label }}
               {{ form.price }}
           </div>
           <div>
-              Contact Information:
+              {{ form.contact_info.label }}
               {{ form.contact_info }}
           </div>
           <div>
-              Description:
+              {{ form.description.label }}
               {{ form.description }}
           </div>
           <div>
