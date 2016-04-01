@@ -114,6 +114,17 @@ def search(id):
 
     return render_template("booklist.html",listOfBooks = items)
 
+@app.route("/mybooks")
+@login_required
+def mybooks():
+    listOfBooks = Book.objects()
+    items=[]
+    for book in listOfBooks:
+        if(book.username.lower()==User.name.lower()):
+            items.append(book)
+
+    return render_template("books.html",listOfBooks = items)
+
 app.run(debug=True)
 
 

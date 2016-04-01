@@ -17,15 +17,17 @@
             <div class="row">
                 <div class="col-md-4">
                     {% for book in listOfBooks %}
-                    <img src="..." alt="...">
-                    <div class="caption">
+                    <div style="display:inline-block;vertical-align:top;">
+                        <img src="..." alt="...">
+                    </div>
+                    <div style="display:inline-block;">
                         <h3>{{book.book_name}}</h3>
                         <p>{{ book.description }}</p>
                         <p>{{book.user_name}}</p>
                         <p>{{ book.contact_info }}</p>
                         <p>{{ book.price }}</p>
                         <!--This GET method will pull the book information and redirect the user to an info page-->
-                      <p><a class = "btn btn-primary" role="button" methods="GET">Buy now</a></p>
+                        <p><a class = "btn btn-primary" role="button" methods="GET">Buy now</a></p>
                     </div>
                 </div>
                 {% endfor %}
