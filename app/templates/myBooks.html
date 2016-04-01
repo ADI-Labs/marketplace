@@ -18,9 +18,8 @@
 		                        <p>{{ book.contact_info }}</p>
 		                        <p>{{ book.price }}</p>
 		                        <p><img src={{book.image}} alt="..."></p>
-		                        <!--This GET method will remove a listing from the database-->
-                     			 <p><a class = "btn btn-primary" role="button" methods="POST" action="booklist">Delete Listing</a></p>
-		                    </div>
+                      			<!--This GET method will delete a book-->
+                      			<p><a class = "btn btn-primary" role="button" methods="GET" href="/delete/{{book.book_name}}" action="booklist">Delete Listing</a></p>
 	                    {% endif %}
                 </div>
                 {% endfor %}
