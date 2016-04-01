@@ -20,13 +20,13 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">{% if current_user.is_authenticated %} Hi {{ current_user.name }}! {% endif %}</a>
+          <a class="navbar-brand">{% if current_user.is_authenticated %} Hi {{ current_user.name }}! {% endif %}</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
-            <li><a href="/booklist">Available Book</a></li>
+            <li><a href="/booklist">Available Books</a></li>
             <li><a href="/sell">Sell</a></li>
             <li><a href="/myBooks">My Books</a></li>
           </ul>
@@ -45,14 +45,14 @@
         </nav> -->
 
          <!--Header for page -->
-        <div id = "page-content-wrapper">
-            <!-- <div class="container"> -->
-                <div class = "jumbotron">
+        <!-- <div id = "page-content-wrapper"> -->
+<!--             <div class="container">
+ -->                <div class = "jumbotron">
                     <h1>CU Marketplace</h1>
                 </div>
             <!-- </div> -->
            
-        </div>
+        <!-- </div> -->
 
 
         {% block body %} {% endblock %}
