@@ -3,29 +3,36 @@
 {% block title %} Sell {% endblock %}
 
   {% block body %}
+    <div class="page-header" style="text-align: center;">
       <h2>Sell</h2>
-      <form action="" method="POST" enctype=multipart/form-data class="form-horizontal">
-          {{ form.csrf_token }}
-          <div>
-              {{form.book_name.label}}
-              {{ form.book_name }} 
-          </div>
-          <div>
-              {{ form.price.label }}
-              {{ form.price }}
-          </div>
-          <div>
-              {{ form.contact_info.label }}
-              {{ form.contact_info }}
-          </div>
-          <div>
-              {{ form.description.label }}
-              {{ form.description }}
-          </div>
-          <div>
-            <input type=file name=file>
-          <input type="submit" value="Sell">
-      </form>
+    </div>
+      <div class="container">
+        <form action="" method="POST" enctype=multipart/form-data class="form-horizontal">
+            {{ form.csrf_token }}
+            <div>
+                <h2>Username</h2>
+                {{ form.book_name(class="form-control", placeholder="Enter Username")}} 
+            </div>
+            <div>
+                <h2>Price</h2>
+                {{ form.price(class="form-control", placeholder="Enter price") }}
+            </div>
+            <div>
+                <h2>Contact Info</h2>
+                {{ form.contact_info(class="form-control", placeholder="Enter contact info") }}
+            </div>
+            <div>
+                <h2>Description</h2>
+                {{ form.description(class="form-control", placeholder="Enter description") }}
+            </div>
+            <div>
+            <div class="form-horizontal"></div>
+              <input type=file name=file>
+              <button type="button" class="btn btn-primary-outline">Primary</button>
+            </div>
+            <input type="submit" value="Sell">
+        </form>
+        </div>
   <!--     <form class="form-horizontal" role="form">
   <div class="form-group">
     <label class="control-label col-sm-2" for="email">Email:</label>
