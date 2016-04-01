@@ -9,6 +9,12 @@ body {
     text-decoration-line: underline;
 }
 
+#booklist {
+    border-width: 20px;
+    text-align: center;
+    padding-top: 30px;
+}
+
 .caption {
     text-align: center;
 }
@@ -17,7 +23,23 @@ img {
     align-content: center;
 }
 
-.left-side {
+#searchbar {
+    text-align: center;
+}
+
+#columns {
+    padding-top: 10px;
+}
+
+#navbar {
+    color: #E5F1F8;
+}
+
+#landing {
+    text-align: center;
+}
+
+/*.left-side {
     float: left;
     width: 50%;
 }
@@ -73,7 +95,7 @@ img {
     margin-right: -250px;
 }
 
-/* Sidebar Styles */
+
 
 .sidebar-nav {
     position: absolute;
@@ -148,3 +170,4 @@ img {
         margin-right: 0;
     }
 }
+*/
