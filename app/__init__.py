@@ -9,7 +9,7 @@ from werkzeug import secure_filename
 import requests
 import os
 
-UPLOAD_FOLDER = 'C:/Users/uploads/' # This must be changed to your directory
+UPLOAD_FOLDER = 'C:/Users/Public/' # This must be changed to your directory
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif', 'PNG', 'JPG', 'JPEG', 'GIF'])
 
 app = Flask(__name__)
