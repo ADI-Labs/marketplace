@@ -3,14 +3,14 @@
         {% block body %}
 
         	<div class="page-header">
-        		<h1>My Books</h1>
+        		<h1 style="text-align: center;">My Books</h1>
     		</div>
 
             <!--This will end up being what flask iterates, adding the list of available books to the page-->
             <div class="row">
                 {% for book in list_of_my_books %}
                     {% if current_user.name == book.user_name %}
-                        <div class="col-md-4">
+                        <div class="col-md-4" id="booklist">
                              <div style="display:inline-block;vertical-align:top;">
                                 <p><img src={{book.image}} alt="..."></p>
                             </div>
