@@ -3,18 +3,18 @@
         {% block body %}
         <!--Search Bar-->
 
-	    <form action="/booklist" method="POST">
+        <form action="/booklist" method="POST">
                 <div class="row">
-                    <div class="col-lg-6">		    
+                    <div class="col-lg-6">          
                         <input type="text" class="form-control" placeholder="Search for a book here" name="search">
-                    	<span class="input-group-btn">
-                        	<button class="btn btn-default" type="button">Go!</button>
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button">Go!</button>
                         </span>                   
                     </div>
                 </div>
              </form>
 
-            <!--This will end up being what flask iterates, adding the list of available books to the page-->
+             <!--This will end up being what flask iterates, adding the list of available books to the page-->
             <div class="row">
                 {% for book in listOfBooks %}
                     <div class="col-md-6">
