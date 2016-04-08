@@ -1,7 +1,8 @@
 from .. import db
+from wtforms import validators
 
 class User(db.Document):
-    name = db.StringField(required=True,unique=True)
+    name = db.StringField(validators=[validators.Email()],required=True,unique=True)
     password = db.StringField(required=True)
     contact_info = db.StringField(required=False)
     def is_authenticated(self):
