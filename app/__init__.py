@@ -83,34 +83,30 @@ def allowed_file(filename):
 @app.route("/sell/",methods=["POST","GET"])
 def sell():
     form = BookForm(request.form)
-    if request.method=="POST":
-        form.user_name.data = current_user.name
-        form.contact_info.data = current_user.contact_info
+
     if form.validate():
+
+        #Get Google API Information for book name
         url = "https://www.googleapis.com/books/v1/volumes?q=" + form.book_name.data.replace(" ","%20")
         response_dict = requests.get(url).json()
 
-        description = form.description.data
-        image = "http://thestarryeye.typepad.com/.a/6a00d8341cdd0d53ef014e86b9b561970d-800wi"
-
+        #Search through list of books until one has a valid description and image link
         bookNumber = 0
-
         while "description" not in response_dict["items"][bookNumber]["volumeInfo"]\
          or "imageLinks" not in response_dict["items"][bookNumber]["volumeInfo"]:
             bookNumber += 1
 
+        #Assign description and image link from Google API, assign user name and contact info from current user
         description = response_dict["items"][bookNumber]["volumeInfo"]["description"]
         image = response_dict["items"][bookNumber]["volumeInfo"]["imageLinks"]["thumbnail"]
+        form.user_name.data = current_user.name
+        form.contact_info.data = current_user.contact_info
 
+        #Assign and save book
         book = Book(user_name=form.user_name.data, book_name=form.book_name.data, price=form.price.data, 
         contact_info=form.contact_info.data, description=description, image=image)
-        file = request.files['file']
-        if file and allowed_file(file.filename):
-            filename = secure_filename(file.filename)
-            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            book.image = url_for('uploaded_file', filename=filename)
-
         book.save()
+        
         return redirect('/booklist')
     else:
         return render_template("sell.html",form=form)
