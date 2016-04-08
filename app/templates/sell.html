@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %} Sell {% endblock %}
+
+  {% block body %}
+    <div class="page-header" style="text-align: center;">
+      <h2>Sell</h2>
+    </div>
+      <div class="container">
+        <form action="" method="POST" enctype=multipart/form-data class="form-horizontal">
+            {{ form.csrf_token }}
+            <div>
+                <h2>Book Title</h2>
+                {{ form.book_name(class="form-control", placeholder="Enter title") }}
+            </div>
+            <div>
+                <h2>Description</h2>
+                {{ form.description(class="form-control", placeholder="Enter description") }}
+            </div>
+            <div>
+                <h2>Price</h2>
+                {{ form.price(class="form-control", placeholder="Enter price") }}
+            </div>
+            <div>
+            <div class="form-horizontal"></div>
+                <input type=file name=file>
+            </div>
+            <input type="submit" value="Sell">
+        </form>
+        </div>
+  {% endblock %}
