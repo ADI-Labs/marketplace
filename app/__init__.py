@@ -1,15 +1,14 @@
 from __future__ import absolute_import
-from flask import Flask, render_template, request, redirect, url_for, \
-    send_from_directory
+from flask import Flask, render_template, request, redirect, \
+        send_from_directory
 from flask.ext.mongoengine import MongoEngine
 from flask.ext.login import LoginManager, login_user, logout_user, \
     login_required, current_user
 from flask.ext.mongoengine.wtf import model_form
 from wtforms import PasswordField
-from werkzeug import secure_filename
-import os
 from .models.user import User
 from .models.book import Book
+import requests
 
 UPLOAD_FOLDER = 'C:/Users/Public/'  # This must be changed to your directory
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif', 'PNG', 'JPG', 'JPEG',
@@ -90,22 +89,39 @@ def allowed_file(filename):
 @app.route("/sell/", methods=["POST", "GET"])
 def sell():
     form = BookForm(request.form)
-    if request.method == "POST":
+
+    if form.validate():
+
+        # Get Google API Information for book name
+        url = "https://www.googleapis.com/books/v1/volumes?q=" + \
+              form.book_name.data.replace(" ", "%20")
+        response_dict = requests.get(url).json()
+
+        # Search through list of books until one has a valid description and
+        # image link
+        bookNumber = 0
+        while "description" not in \
+                response_dict["items"][bookNumber]["volumeInfo"] \
+                or "imageLinks" not in \
+                response_dict["items"][bookNumber]["volumeInfo"]:
+            bookNumber += 1
+
+        # Assign description and image link from Google API, assign user name
+        # and contact info from current user
+        description = response_dict["items"][bookNumber]["volumeInfo"]
+        ["description"]
+        image = response_dict["items"][bookNumber]["volumeInfo"]["imageLinks"]
+        ["thumbnail"]
         form.user_name.data = current_user.name
         form.contact_info.data = current_user.contact_info
-    if form.validate():
+
+        #   Assign and save book
         book = Book(user_name=form.user_name.data,
                     book_name=form.book_name.data, price=form.price.data,
                     contact_info=form.contact_info.data,
-                    description=form.description.data)
-
-        file = request.files['file']
-        if file and allowed_file(file.filename):
-            filename = secure_filename(file.filename)
-            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            book.image = url_for('uploaded_file', filename=filename)
-
+                    description=description, image=image)
         book.save()
+
         return redirect('/booklist')
     else:
         return render_template("sell.html", form=form)
