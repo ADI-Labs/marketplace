@@ -1,5 +1,6 @@
 from .. import db
 
+
 class Book(db.Document):
     user_name = db.StringField(required=True)
     book_name = db.StringField(required=True)
