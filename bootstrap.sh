@@ -25,7 +25,7 @@ apt-get install -y  mongodb
 # pip install -r /vagrant/config/requirements.txt
 
 # Install Docker
-curl -sSL https://get.docker.com/ | sh
-service restart docker
+# curl -sSL https://get.docker.com/ | sh
+# service restart docker
 
 exit 0
