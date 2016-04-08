@@ -56,9 +56,12 @@ def home():
 def registration():
   form = UserForm(request.form)
   if request.method == "POST" and form.validate():
-    form.save()
-    return redirect("/")
-
+    # If the username is unique...
+    if(load_user(form.name.data) == None):
+      form.save()
+      return redirect("/")
+    else:
+      return redirect("/register")
   return render_template("register.html", form=form)
 
 @app.route("/booklist", methods = ["POST", "GET"])
@@ -140,7 +143,7 @@ def search(id):
 @app.route("/myBooks/", methods=["POST","GET"])
 @login_required
 def myBooks():
-  list_of_my_books = Book.objects()
+  list_of_my_books = Book.objects(user_name = current_user.name)
   return render_template("myBooks.html", list_of_my_books = list_of_my_books)
 
 

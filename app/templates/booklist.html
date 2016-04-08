@@ -18,7 +18,7 @@
              </form>
 
             <!--This will end up being what flask iterates, adding the list of available books to the page-->
-            <div class="container"
+            <div class="container">
                 <div class="row" id="booklist">
                     {% for book in listOfBooks %}
                     <div class="center-block" id="columns">
@@ -28,7 +28,7 @@
                             <h3>{{book.book_name}}</h3>
                             <p>{{ book.description }}</p>
                             <p>{{ book.price }}</p>
-                           <p><a class = "btn btn-primary" role="button" methods="POST" href="/booklist/{{book.book_name}}" action="booklist">Buy now</a></p>
+                           <p><a class = "btn btn-primary" role="button" methods="POST" href="/bookinfo/{{book.book_name}}" action="booklist">Buy now</a></p>
                     </div>
                     {% endfor %}
                 </div>
