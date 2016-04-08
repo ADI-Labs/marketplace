@@ -9,4 +9,4 @@ install: "pip install -r config/requirements.txt"
 
 # command to run tests
 script:
-  - flake8
+  - flake8 .
