@@ -87,9 +87,13 @@ def sell():
         form.user_name.data = current_user.name
         form.contact_info.data = current_user.contact_info
     if form.validate():
-        book = Book(user_name=form.user_name.data, book_name=form.book_name.data, price=form.price.data,
-                                contact_info=form.contact_info.data, description=form.description.data)
+        url = "https://www.googleapis.com/books/v1/volumes?q=" + form.book_name.data.replace(" ","%20")
+        response_dict = requests.get(url).json()
+        description = response_dict["items"][0]["volumeInfo"]["description"]
+        image = response_dict["items"][0]["volumeInfo"]["imageLinks"]["thumbnail"]
 
+        book = Book(user_name=form.user_name.data, book_name=form.book_name.data, price=form.price.data, 
+        contact_info=form.contact_info.data, description=description, image=image)
         file = request.files['file']
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
