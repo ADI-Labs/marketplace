@@ -125,10 +125,7 @@ def logout():
 def search(id):
     if request.method == "POST":
         id=request.form["search"]
-        if str(id) != "":
-            return redirect("/booklist/" + id)
-        else:
-            return redirect("/booklist")
+        return redirect("/booklist/" + id)
 
     else:
         listOfBooks = Book.objects()
