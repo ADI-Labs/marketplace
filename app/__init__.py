@@ -13,8 +13,8 @@ UPLOAD_FOLDER = 'C:/Users/Public/' # This must be changed to your directory
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif', 'PNG', 'JPG', 'JPEG', 'GIF'])
 
 app = Flask(__name__)
-app.config["DEBUG"] = True      
-app.config['MONGODB_SETTINGS'] = { 'db' : 'books' }
+app.config["DEBUG"] = True
+app.config['MONGODB_SETTINGS'] = {'db': 'books'}
 app.config['SECRET_KEY'] = 'secretkey'
 app.config['WTF_CSRF_ENABLED'] = True
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
@@ -114,14 +114,13 @@ def sell():
 
 @app.route('/uploads/<filename>')
 def uploaded_file(filename):
-        return send_from_directory(app.config['UPLOAD_FOLDER'],
-                                                             filename) 
+        return send_from_directory(app.config['UPLOAD_FOLDER'], filename) 
 
 
 @app.route("/bookinfo/<id>")
 def bookinfo(id):
-    books=Book.objects(book_name = id)
-    return render_template("bookinfo.html",book=books[0])
+    books = Book.objects(book_name=id)
+    return render_template("bookinfo.html", book=books[0])
 
 
 @app.route("/logout")
@@ -130,16 +129,16 @@ def logout():
     return redirect("/")
 
 
-@app.route("/booklist/<id>",methods=["POST","GET"])
+@app.route("/booklist/<id>", methods=["POST", "GET"])
 @login_required
 def search(id):
     if request.method == "POST":
-        id=request.form["search"]
+        id = request.form["search"]
         return redirect("/booklist/" + id)
 
     else:
         listOfBooks = Book.objects()
-        items=[]
+        items = []
         for book in listOfBooks:
                 if(id.lower() in book.book_name.lower()):
                         items.append(book)
@@ -147,14 +146,14 @@ def search(id):
                 if(book not in items and id.lower() in book.description.lower()):
                         items.append(book)
 
-        return render_template("booklist.html",listOfBooks = items)
+        return render_template("booklist.html", listOfBooks=items)
 
 
-@app.route("/myBooks/", methods=["POST","GET"])
+@app.route("/myBooks/", methods=["POST", "GET"])
 @login_required
 def myBooks():
-    list_of_my_books = Book.objects(user_name = current_user.name)
-    return render_template("myBooks.html", list_of_my_books = list_of_my_books)
+    list_of_my_books = Book.objects(user_name=current_user.name)
+    return render_template("myBooks.html", list_of_my_books=list_of_my_books)
 
 
 @app.route("/delete/<id>")
@@ -162,7 +161,7 @@ def myBooks():
 def delete(id):
     deleted_book = Book.objects(book_name=id)[0].book_name
     Book.objects(book_name=id).delete()
-    return render_template("delete.html", deleted_book = deleted_book)
+    return render_template("delete.html", deleted_book=deleted_book)
 
 """
 for text in Book.objects():
