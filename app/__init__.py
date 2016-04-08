@@ -89,8 +89,18 @@ def sell():
     if form.validate():
         url = "https://www.googleapis.com/books/v1/volumes?q=" + form.book_name.data.replace(" ","%20")
         response_dict = requests.get(url).json()
-        description = response_dict["items"][0]["volumeInfo"]["description"]
-        image = response_dict["items"][0]["volumeInfo"]["imageLinks"]["thumbnail"]
+
+        description = form.description.data
+        image = "http://thestarryeye.typepad.com/.a/6a00d8341cdd0d53ef014e86b9b561970d-800wi"
+
+        bookNumber = 0
+
+        while "description" not in response_dict["items"][bookNumber]["volumeInfo"]\
+         or "imageLinks" not in response_dict["items"][bookNumber]["volumeInfo"]:
+            bookNumber += 1
+
+        description = response_dict["items"][bookNumber]["volumeInfo"]["description"]
+        image = response_dict["items"][bookNumber]["volumeInfo"]["imageLinks"]["thumbnail"]
 
         book = Book(user_name=form.user_name.data, book_name=form.book_name.data, price=form.price.data, 
         contact_info=form.contact_info.data, description=description, image=image)
