@@ -104,10 +104,15 @@ def sell():
             bookNumber += 1
         # Assign description and image link from Google API, assign user name
         # and contact info from current user
-        description = response_dict["items"][bookNumber]
-        ["volumeInfo"]["description"]
+        # Truncate to 500 characters
+        description = response_dict["items"][bookNumber]["volumeInfo"]\
+        ["description"]
+        if len(description) > 500:
+            description = "{}...".format(description[:501])
+
         image = response_dict["items"][bookNumber]["volumeInfo"]
         ["imageLinks"]["thumbnail"]
+
         form.user_name.data = current_user.name
         form.contact_info.data = current_user.contact_info
 
@@ -156,7 +161,7 @@ def search(id):
                         items.append(book)
         for book in listOfBooks:
                 if book not in items and\
-                id.lower() in book.description.lower():
+                   id.lower() in book.description.lower():
                         items.append(book)
 
         return render_template("booklist.html", listOfBooks=items)
