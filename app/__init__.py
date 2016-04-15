@@ -31,6 +31,7 @@ BookForm = model_form(Book)
 # Push test
 
 
+
 @login_manager.user_loader
 def load_user(name):
     users = User.objects(name=name)
@@ -101,7 +102,6 @@ def sell():
         ["volumeInfo"] or "imageLinks" not in response_dict["items"]\
         [bookNumber]["volumeInfo"]:
             bookNumber += 1
-
         # Assign description and image link from Google API, assign user name
         # and contact info from current user
         description = response_dict["items"][bookNumber]
