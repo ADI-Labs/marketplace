@@ -1,14 +1,15 @@
+from __future__ import absolute_import
+
 import requests
 import os
-from .models.user import User
-from .models.book import Book
-from __future__ import absolute_import
 from flask.ext.mongoengine import MongoEngine
 from flask.ext.mongoengine.wtf import model_form
 from werkzeug import secure_filename
 from wtforms import PasswordField
-from flask.ext.login import LoginManager, login_user, logout_user,
+from flask.ext.login import LoginManager, login_user, logout_user,\
 login_required, current_user
+from flask import Flask, render_template, redirect, request, url_for,\
+send_from_directory
 
 app = Flask(__name__)
 app.config["DEBUG"] = True
@@ -16,6 +17,9 @@ app.config['MONGODB_SETTINGS'] = {'db': 'books'}
 app.config['SECRET_KEY'] = 'secretkey'
 app.config['WTF_CSRF_ENABLED'] = True
 db = MongoEngine(app)
+
+from .models.user import User
+from .models.book import Book
 
 login_manager = LoginManager()
 login_manager.init_app(app)
@@ -86,15 +90,15 @@ def sell():
     if form.validate():
 
         # Get Google API Information for book name
-        url = "https://www.googleapis.com/books/v1/volumes?q=" +
-        form.book_name.data.replace(" ", "%20")
+        url = "https://www.googleapis.com/books/v1/volumes?q="\
+            + form.book_name.data.replace(" ", "%20")
         response_dict = requests.get(url).json()
 
         # Search through list of books until one has a valid description
         # and image link
         bookNumber = 0
-        while "description" not in response_dict["items"][bookNumber]
-        ["volumeInfo"] or "imageLinks" not in response_dict["items"]
+        while "description" not in response_dict["items"][bookNumber]\
+        ["volumeInfo"] or "imageLinks" not in response_dict["items"]\
         [bookNumber]["volumeInfo"]:
             bookNumber += 1
 
@@ -151,7 +155,7 @@ def search(id):
                 if(id.lower() in book.book_name.lower()):
                         items.append(book)
         for book in listOfBooks:
-                if book not in items and
+                if book not in items and\
                 id.lower() in book.description.lower():
                         items.append(book)
 
