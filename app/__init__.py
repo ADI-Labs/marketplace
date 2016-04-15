@@ -1,27 +1,15 @@
+from __future__ import absolute_import
+
 import requests
 import os
-from .models.user import User
-from .models.book import Book
-from __future__ import absolute_import
-<<<<<<< HEAD
-
-from flask import Flask, render_template, request, redirect, send_from_directory
-=======
->>>>>>> 72f66f225c1fdbcf9b196384a3eb0b6a6b3ad9d7
 from flask.ext.mongoengine import MongoEngine
 from flask.ext.mongoengine.wtf import model_form
-<<<<<<< HEAD
-from wtforms import PasswordField
-import requests
-
-UPLOAD_FOLDER = 'C:/Users/Public/' # This must be changed to your directory
-ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif', 'PNG', 'JPG', 'JPEG', 'GIF'])
-=======
 from werkzeug import secure_filename
 from wtforms import PasswordField
-from flask.ext.login import LoginManager, login_user, logout_user,
+from flask.ext.login import LoginManager, login_user, logout_user,\
 login_required, current_user
->>>>>>> 72f66f225c1fdbcf9b196384a3eb0b6a6b3ad9d7
+from flask import Flask, render_template, redirect, request, url_for,\
+send_from_directory
 
 app = Flask(__name__)
 app.config["DEBUG"] = True
@@ -29,6 +17,9 @@ app.config['MONGODB_SETTINGS'] = {'db': 'books'}
 app.config['SECRET_KEY'] = 'secretkey'
 app.config['WTF_CSRF_ENABLED'] = True
 db = MongoEngine(app)
+
+from .models.user import User
+from .models.book import Book
 
 login_manager = LoginManager()
 login_manager.init_app(app)
@@ -50,13 +41,8 @@ def load_user(name):
         return None
 
 
-<<<<<<< HEAD
-#this should actually be called login
-@app.route("/", methods=['GET','POST'])
-=======
 # this should actually be called login
 @app.route("/", methods=['GET', 'POST'])
->>>>>>> 72f66f225c1fdbcf9b196384a3eb0b6a6b3ad9d7
 def home():
     form = UserForm(request.form)
     if request.method == 'POST' and form.validate():
@@ -82,11 +68,7 @@ def registration():
     return render_template("register.html", form=form)
 
 
-<<<<<<< HEAD
-@app.route("/booklist", methods = ["POST", "GET"])
-=======
 @app.route("/booklist", methods=["POST", "GET"])
->>>>>>> 72f66f225c1fdbcf9b196384a3eb0b6a6b3ad9d7
 @login_required
 def getBooks():
     if request.method == "POST":
@@ -109,21 +91,22 @@ def sell():
     if form.validate():
 
         # Get Google API Information for book name
-        url = "https://www.googleapis.com/books/v1/volumes?q=" +
-        form.book_name.data.replace(" ", "%20")
+        url = "https://www.googleapis.com/books/v1/volumes?q="\
+            + form.book_name.data.replace(" ", "%20")
         response_dict = requests.get(url).json()
 
         # Search through list of books until one has a valid description
         # and image link
         bookNumber = 0
-        while "description" not in response_dict["items"][bookNumber]
-        ["volumeInfo"] or "imageLinks" not in response_dict["items"]
+        while "description" not in response_dict["items"][bookNumber]\
+        ["volumeInfo"] or "imageLinks" not in response_dict["items"]\
         [bookNumber]["volumeInfo"]:
             bookNumber += 1
-
-        #Assign description and image link from Google API, assign user name and contact info from current user
+        # Assign description and image link from Google API, assign user name
+        # and contact info from current user
         # Truncate to 500 characters
-        description = response_dict["items"][bookNumber]["volumeInfo"]["description"]
+        description = response_dict["items"][bookNumber]["volumeInfo"]\
+        ["description"]
         if len(description) > 500:
             description = "{}...".format(description[:501])
 
@@ -177,8 +160,8 @@ def search(id):
                 if(id.lower() in book.book_name.lower()):
                         items.append(book)
         for book in listOfBooks:
-                if book not in items and
-                id.lower() in book.description.lower():
+                if book not in items and\
+                   id.lower() in book.description.lower():
                         items.append(book)
 
         return render_template("booklist.html", listOfBooks=items)
