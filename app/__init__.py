@@ -45,7 +45,6 @@ BookForm = model_form(Book)
 # Push test
 
 
-
 @login_manager.user_loader
 def load_user(name):
     users = User.objects(name=name)
@@ -103,11 +102,6 @@ def getBooks():
         return render_template("booklist.html", listOfBooks=listOfBooks)
 
 
-def allowed_file(filename):
-        return '.' in filename and \
-                     filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
-
-
 @app.route("/sell/", methods=["POST", "GET"])
 def sell():
     form = BookForm(request.form)
@@ -148,12 +142,6 @@ def sell():
         return redirect('/booklist')
     else:
         return render_template("sell.html", form=form)
-
-
-@app.route('/uploads/<filename>')
-def uploaded_file(filename):
-        return send_from_directory(app.config['UPLOAD_FOLDER'],
-                                   filename)
 
 
 @app.route("/bookinfo/<id>")
