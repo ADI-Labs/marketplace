@@ -41,8 +41,8 @@ def load_user(name):
 def home():
     form = UserForm(request.form)
     if request.method == 'POST' and form.validate():
-        user = User.objects(name=form.name.data, password=form.password.data).
-        first()
+        user = User.objects(name=form.name.data, password=form
+                            .password.data).first()
         if user:
             login_user(user)
             return redirect('/booklist')
