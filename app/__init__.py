@@ -33,133 +33,133 @@ BookForm = model_form(Book)
 
 @login_manager.user_loader
 def load_user(name):
-  users = User.objects(name=name)
-  if len(users) != 0:
-    return users[0]
-  else:
-    return None
+    users = User.objects(name=name)
+    if len(users) != 0:
+        return users[0]
+    else:
+        return None
 
 #this should actually be called login
 @app.route("/", methods=['GET','POST'])
 def home():
-  form = UserForm(request.form)
-  if request.method == 'POST' and form.validate():
-    user = User.objects(name=form.name.data,password=form.password.data).first()
-    if user:
-      login_user(user)
-      return redirect('/booklist')
+    form = UserForm(request.form)
+    if request.method == 'POST' and form.validate():
+        user = User.objects(name=form.name.data,password=form.password.data).first()
+        if user:
+            login_user(user)
+            return redirect('/booklist')
 
-  return render_template('login.html', form=form)
+    return render_template('login.html', form=form)
 
 
 @app.route("/register", methods=["POST","GET"])
 def registration():
-  form = UserForm(request.form)
-  if request.method == "POST" and form.validate():
-    # If the username is unique...
-    if(load_user(form.name.data) == None):
-      form.save()
-      return redirect("/")
-    else:
-      return redirect("/register")
-  return render_template("register.html", form=form)
+    form = UserForm(request.form)
+    if request.method == "POST" and form.validate():
+        # If the username is unique...
+        if(load_user(form.name.data) == None):
+            form.save()
+            return redirect("/")
+        else:
+            return redirect("/register")
+    return render_template("register.html", form=form)
 
 @app.route("/booklist", methods = ["POST", "GET"])
 @login_required
 def getBooks():
-  if request.method == "POST":
-    id=request.form["search"]
-    return redirect("/booklist/" + id)
-  else:
-    listOfBooks = Book.objects()
-    return render_template("booklist.html", listOfBooks = listOfBooks)
+    if request.method == "POST":
+        id=request.form["search"]
+        return redirect("/booklist/" + id)
+    else:
+        listOfBooks = Book.objects()
+        return render_template("booklist.html", listOfBooks = listOfBooks)
 
 
 def allowed_file(filename):
-    return '.' in filename and \
-           filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
+        return '.' in filename and \
+                     filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
 
 
 @app.route("/sell/",methods=["POST","GET"])
 def sell():
-  form = BookForm(request.form)
-  if request.method=="POST":
-    form.user_name.data = current_user.name
-    form.contact_info.data = current_user.contact_info
-  if form.validate():
-    book = Book(user_name=form.user_name.data, book_name=form.book_name.data, price=form.price.data,
-                contact_info=form.contact_info.data, description=form.description.data)
+    form = BookForm(request.form)
+    if request.method=="POST":
+        form.user_name.data = current_user.name
+        form.contact_info.data = current_user.contact_info
+    if form.validate():
+        book = Book(user_name=form.user_name.data, book_name=form.book_name.data, price=form.price.data,
+                                contact_info=form.contact_info.data, description=form.description.data)
 
-    file = request.files['file']
-    if file and allowed_file(file.filename):
-      filename = secure_filename(file.filename)
-      file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-      book.image = url_for('uploaded_file', filename=filename)
+        file = request.files['file']
+        if file and allowed_file(file.filename):
+            filename = secure_filename(file.filename)
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            book.image = url_for('uploaded_file', filename=filename)
 
-    book.save()
-    return redirect('/booklist')
-  else:
-    return render_template("sell.html",form=form)
+        book.save()
+        return redirect('/booklist')
+    else:
+        return render_template("sell.html",form=form)
 
 
 @app.route('/uploads/<filename>')
 def uploaded_file(filename):
-    return send_from_directory(app.config['UPLOAD_FOLDER'],
-                               filename) 
+        return send_from_directory(app.config['UPLOAD_FOLDER'],
+                                                             filename) 
 
 
 @app.route("/bookinfo/<id>")
 def bookinfo(id):
-  books=Book.objects(book_name = id)
-  return render_template("bookinfo.html",book=books[0])
+    books=Book.objects(book_name = id)
+    return render_template("bookinfo.html",book=books[0])
 
 
 @app.route("/logout")
 def logout():
-  logout_user()
-  return redirect("/")
+    logout_user()
+    return redirect("/")
 
 
 @app.route("/booklist/<id>",methods=["POST","GET"])
 @login_required
 def search(id):
-  if request.method == "POST":
-    id=request.form["search"]
-    return redirect("/booklist/" + id)
+    if request.method == "POST":
+        id=request.form["search"]
+        return redirect("/booklist/" + id)
 
-  else:
-    listOfBooks = Book.objects()
-    items=[]
-    for book in listOfBooks:
-        if(id.lower() in book.book_name.lower()):
-            items.append(book)
-    for book in listOfBooks:
-        if(book not in items and id.lower() in book.description.lower()):
-            items.append(book)
+    else:
+        listOfBooks = Book.objects()
+        items=[]
+        for book in listOfBooks:
+                if(id.lower() in book.book_name.lower()):
+                        items.append(book)
+        for book in listOfBooks:
+                if(book not in items and id.lower() in book.description.lower()):
+                        items.append(book)
 
-    return render_template("booklist.html",listOfBooks = items)
+        return render_template("booklist.html",listOfBooks = items)
 
 
 @app.route("/myBooks/", methods=["POST","GET"])
 @login_required
 def myBooks():
-  list_of_my_books = Book.objects(user_name = current_user.name)
-  return render_template("myBooks.html", list_of_my_books = list_of_my_books)
+    list_of_my_books = Book.objects(user_name = current_user.name)
+    return render_template("myBooks.html", list_of_my_books = list_of_my_books)
 
 
 @app.route("/delete/<id>")
 @login_required
 def delete(id):
-  deleted_book = Book.objects(book_name=id)[0].book_name
-  Book.objects(book_name=id).delete()
-  return render_template("delete.html", deleted_book = deleted_book)
+    deleted_book = Book.objects(book_name=id)[0].book_name
+    Book.objects(book_name=id).delete()
+    return render_template("delete.html", deleted_book = deleted_book)
 
 """
 for text in Book.objects():
-  text.delete()
+    text.delete()
 
 for guy in User.objects():
-  guy.delete()
+    guy.delete()
 """
 
 app.run(debug=True)
