@@ -121,22 +121,15 @@ def sell():
         [bookNumber]["volumeInfo"]:
             bookNumber += 1
 
-<<<<<<< HEAD
         #Assign description and image link from Google API, assign user name and contact info from current user
         # Truncate to 500 characters
         description = response_dict["items"][bookNumber]["volumeInfo"]["description"]
         if len(description) > 500:
             description = "{}...".format(description[:501])
 
-        image = response_dict["items"][bookNumber]["volumeInfo"]["imageLinks"]["thumbnail"]
-=======
-        # Assign description and image link from Google API, assign user name
-        # and contact info from current user
-        description = response_dict["items"][bookNumber]
-        ["volumeInfo"]["description"]
         image = response_dict["items"][bookNumber]["volumeInfo"]
         ["imageLinks"]["thumbnail"]
->>>>>>> 72f66f225c1fdbcf9b196384a3eb0b6a6b3ad9d7
+
         form.user_name.data = current_user.name
         form.contact_info.data = current_user.contact_info
 
