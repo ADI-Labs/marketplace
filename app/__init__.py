@@ -98,19 +98,17 @@ def sell():
         # Search through list of books until one has a valid description
         # and image link
         bookNumber = 0
-        while "description" not in response_dict["items"][bookNumber]\
-        ["volumeInfo"] or "imageLinks" not in response_dict["items"]\
-        [bookNumber]["volumeInfo"]:
+        while "description" not in response_dict["items"][bookNumber]["volumeInfo"]\
+        or "imageLinks" not in response_dict["items"][bookNumber]["volumeInfo"]:
             bookNumber += 1
         # Assign description and image link from Google API, assign user name
         # and contact info from current user
         # Truncate to 500 characters
-        description = response_dict["items"][bookNumber]["volumeInfo"]\
-        ["description"]
+        description = response_dict["items"][bookNumber]["volumeInfo"]["description"]
         if len(description) > 500:
             description = "{}...".format(description[:501])
 
-        image = response_dict["items"][bookNumber]["volumeInfo"]
+        image = response_dict["items"][bookNumber]["volumeInfo"]\
         ["imageLinks"]["thumbnail"]
 
         form.user_name.data = current_user.name
