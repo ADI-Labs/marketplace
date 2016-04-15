@@ -1,13 +1,11 @@
 from __future__ import absolute_import
 
-from flask import Flask, render_template, request, redirect, url_for, send_from_directory
+from flask import Flask, render_template, request, redirect, send_from_directory
 from flask.ext.mongoengine import MongoEngine
 from flask.ext.login import LoginManager, login_user, logout_user, login_required, current_user
 from flask.ext.mongoengine.wtf import model_form
 from wtforms import PasswordField
-from werkzeug import secure_filename
 import requests
-import os
 
 UPLOAD_FOLDER = 'C:/Users/Public/' # This must be changed to your directory
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif', 'PNG', 'JPG', 'JPEG', 'GIF'])
@@ -31,6 +29,7 @@ UserForm.password = PasswordField('password')
 
 BookForm = model_form(Book)
 
+
 @login_manager.user_loader
 def load_user(name):
     users = User.objects(name=name)
@@ -38,6 +37,7 @@ def load_user(name):
         return users[0]
     else:
         return None
+
 
 #this should actually be called login
 @app.route("/", methods=['GET','POST'])
@@ -63,6 +63,7 @@ def registration():
         else:
             return redirect("/register")
     return render_template("register.html", form=form)
+
 
 @app.route("/booklist", methods = ["POST", "GET"])
 @login_required
@@ -97,7 +98,11 @@ def sell():
             bookNumber += 1
 
         #Assign description and image link from Google API, assign user name and contact info from current user
+        # Truncate to 500 characters
         description = response_dict["items"][bookNumber]["volumeInfo"]["description"]
+        if len(description) > 500:
+            description = "{}...".format(description[:501])
+
         image = response_dict["items"][bookNumber]["volumeInfo"]["imageLinks"]["thumbnail"]
         form.user_name.data = current_user.name
         form.contact_info.data = current_user.contact_info
