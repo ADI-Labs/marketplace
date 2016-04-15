@@ -1,29 +1,15 @@
 from __future__ import absolute_import
-<<<<<<< HEAD
-from flask import Flask, render_template, request, redirect, send_from_directory
-from flask.ext.mongoengine import MongoEngine
-from flask.ext.mongoengine.wtf import model_form
-from wtforms import PasswordField
-import requests
-
-UPLOAD_FOLDER = 'C:/Users/Public/' # This must be changed to your directory
-ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif', 'PNG', 'JPG', 'JPEG', 'GIF'])
-=======
-
 import requests
 import os
 from flask.ext.mongoengine import MongoEngine
 from flask.ext.mongoengine.wtf import model_form
->>>>>>> upstream/master
 from werkzeug import secure_filename
 from wtforms import PasswordField
 from flask.ext.login import LoginManager, login_user, logout_user,\
 login_required, current_user
-<<<<<<< HEAD
-=======
 from flask import Flask, render_template, redirect, request, url_for,\
 send_from_directory
->>>>>>> upstream/master
+
 
 app = Flask(__name__)
 app.config["DEBUG"] = True
@@ -54,14 +40,8 @@ def load_user(name):
         return None
 
 
-<<<<<<< HEAD
-
-#this should actually be called login
-@app.route("/", methods=['GET','POST'])
-=======
 # this should actually be called login
 @app.route("/", methods=['GET', 'POST'])
->>>>>>> upstream/master
 def home():
     form = UserForm(request.form)
     if request.method == 'POST' and form.validate():
@@ -87,11 +67,8 @@ def registration():
     return render_template("register.html", form=form)
 
 
-<<<<<<< HEAD
-@app.route("/booklist", methods = ["POST", "GET"])
-=======
+
 @app.route("/booklist", methods=["POST", "GET"])
->>>>>>> upstream/master
 @login_required
 def getBooks():
     if request.method == "POST":
