@@ -24,6 +24,7 @@ UserForm = model_form(User)
 UserForm.password = PasswordField('password')
 
 BookForm = model_form(Book)
+# Push test
 
 
 @login_manager.user_loader
