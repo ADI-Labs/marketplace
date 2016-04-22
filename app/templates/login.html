@@ -80,20 +80,22 @@
         <div class="modal-body">
           <form action="" method="POST" name="form" value="register">
               {{ form.csrf_token }}
-            <div>
-              <h2>Email</h2>
+            <div style="padding:0px 20px;">
+              <h3>Email</h3>
               {{ form.name(class="form-control", placeholder="Email") }}
             </div>
-            <div>
-              <h2>Phone Number</h2>
+            <div style="padding:0px 20px;">
+              <h3>Phone Number</h3>
               {{ form.contact_info(class="form-control", placeholder="Phone Number") }}
             </div>
-            <div>
-              <h2>Password</h2>
+            <div style="padding:0px 20px;">
+              <h3>Password</h3>
               {{ form.password(class="form-control", placeholder="Password") }}
             </div>
-            <input type="submit" name="form" value="register" class="btn btn-default">
->>>>>>> b29deca8aad69dc9d9606ee443843a369c28454b
+            <br>
+            <div align="center">
+            <input type="submit" name="form" value="Register" class="btn btn-default">
+            </div>
           </form>
         </div>
       </div>
