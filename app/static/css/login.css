@@ -17,4 +17,7 @@ body {
 .push-spaces{
 	height: 30em;
 }
+textarea {
+    resize: none;
+}
 
