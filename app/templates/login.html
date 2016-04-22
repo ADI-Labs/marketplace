@@ -29,7 +29,7 @@
           <a href="/login" data-toggle="modal" data-target="#myModalLogin">Sign In</a>
         </li>
         <li>
-          <a href="/register">Register</a>
+          <a href="/register" data-toggle="modal" data-target="#myModalRegister">Register</a>
         </li>
       </ul>
     </div>
@@ -40,25 +40,55 @@
   </div>
 
   <!-- Login Modal -->
-  <div class="modal fade" id="myModalLogin" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal fade" id="myModalLogin" tabindex="-1" role="dialog" aria-labelledby="myModalLogin">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title" id="myModalLabel">Sign In!</h4>
+          <h4 class="modal-title" id="myModalLogin">Sign in with your Columbia email</h4>
         </div>
         <div class="modal-body">
-          <form action="" method="POST" id="form">
+          <form action="" method="POST" name="form" value="login">
               {{ form.csrf_token }}
             <div>
-              <h2>Username</h2>
-              {{ form.name(class="form-control", placeholder="Enter Username") }}
+              <h2>Email</h2>
+              {{ form.name(class="form-control", placeholder="Email") }}
             </div>
             <div>
               <h2>Password</h2>
               {{ form.password(class="form-control", placeholder="Password") }}
             </div>
-            <input type="submit" value="Login" class="btn btn-default">
+            <input type="submit" name="form" value="login" class="btn btn-default">
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Register Modal -->
+  <div class="modal fade" id="myModalRegister" tabindex="-1" role="dialog" aria-labelledby="myModalRegister">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalRegister">Register with your Columbia email</h4>
+        </div>
+        <div class="modal-body">
+          <form action="" method="POST" name="form" value="register">
+              {{ form.csrf_token }}
+            <div>
+              <h2>Email</h2>
+              {{ form.name(class="form-control", placeholder="Email") }}
+            </div>
+            <div>
+              <h2>Phone Number</h2>
+              {{ form.contact_info(class="form-control", placeholder="Phone Number") }}
+            </div>
+            <div>
+              <h2>Password</h2>
+              {{ form.password(class="form-control", placeholder="Password") }}
+            </div>
+            <input type="submit" name="form" value="register" class="btn btn-default">
           </form>
         </div>
       </div>

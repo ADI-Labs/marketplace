@@ -40,31 +40,25 @@ def load_user(name):
         return None
 
 
-# this should actually be called login
 @app.route("/", methods=['GET', 'POST'])
 def home():
     form = UserForm(request.form)
+
     if request.method == 'POST' and form.validate():
-        user = User.objects(name=form.name.data, password=form
-                            .password.data).first()
-        if user:
-            login_user(user)
-            return redirect('/booklist')
+
+        if request.form["form"] == "login":
+            user = User.objects(name=form.name.data, password=form
+                                .password.data).first()
+            if user:
+                login_user(user)
+                return redirect('/booklist')
+
+        else:
+            if load_user(form.name.data) is None:
+                form.save()
+                return redirect('/')
 
     return render_template('login.html', form=form)
-
-
-@app.route("/register", methods=["POST", "GET"])
-def registration():
-    form = UserForm(request.form)
-    if request.method == "POST" and form.validate():
-        # If the username is unique...
-        if load_user(form.name.data) is None:
-            form.save()
-            return redirect("/")
-        else:
-            return redirect("/register")
-    return render_template("register.html", form=form)
 
 
 @app.route("/booklist", methods=["POST", "GET"])
