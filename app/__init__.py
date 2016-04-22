@@ -46,7 +46,7 @@ def home():
 
     if request.method == 'POST' and form.validate():
 
-        if request.form["form"] == "login":
+        if request.form["form"] == "Login":
             user = User.objects(name=form.name.data, password=form
                                 .password.data).first()
             if user:
