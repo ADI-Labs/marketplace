@@ -2,6 +2,18 @@
     {% block title %} Booklist {% endblock %}
         {% block body %}
         <!--Search Bar-->
+<form action="/booklist" method="POST">
+    <div class="container">
+        <div class="col-lg-4" id="searchbar">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Search for books here" name="search">
+                <span class="input-group-btn">
+                    <button class="btn btn-primary" role="button" methods="POST">Go!</button>
+                </span>
+            </div><!-- /input-group -->
+        </div><!-- /.col-lg-6 -->
+    </div><!-- /.row -->
+</form>
 
 	    <form action="/booklist" method="POST">
                 <div class="container">
@@ -36,3 +48,19 @@
                 </div>
             </div>
         {% endblock%}
+<!-- The List of Books -->
+<div class="container">
+    <div class="row">
+    {% for book in listOfBooks %}
+        <div class="col-md-4 col-height col-top" id="booklist"> 
+            <p><img src={{book.image}} alt="..." width=200px height=300px id="book"></p>
+            <h3>{{book.book_name}}</h3>
+            <p>${{book.price}}</p>
+            <p>
+                <a href="/bookinfo/{{book.book_name}}" class="btn btn-primary" role="button" methods="POST" action="booklist">Buy Now</a>
+            </p>  
+        </div>
+        {%endfor%}
+    </div>
+</div>
+{% endblock%}
