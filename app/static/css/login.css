@@ -1,21 +1,20 @@
-html {
-	background-color: #FFFFFFFF;
-}
-
 body {
-	background-color: #FFFFFFFF;
+	margin-bottom: 50px;
+	background: none;
 }
-
-#form {
-	width: 100%;
-	background-color: #FFFFFFFF;
+.jumbotron {
+	/*background: url(../imgs/columbia.jpg) no-repeat center center fixed; 
+    -webkit-background-size: cover;  
+    -moz-background-size: cover; 
+    -o-background-size: cover; 
+    background-size: cover;*/
+    background: url(../imgs/columbia.jpg) no-repeat center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
-
-#navbar {
-	background-color: #FFFFFFFF;
-}
-
-#landing {
-    text-align: center;
+.push-spaces{
+	height: 30em;
 }
 
