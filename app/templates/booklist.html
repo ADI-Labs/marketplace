@@ -2,36 +2,32 @@
     {% block title %} Booklist {% endblock %}
         {% block body %}
         <!--Search Bar-->
+<form action="/booklist" method="POST">
+    <div class="container">
+        <div class="col-lg-4" id="searchbar">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Search for books here" name="search">
+                <span class="input-group-btn">
+                    <button class="btn btn-primary" role="button" methods="POST">Go!</button>
+                </span>
+            </div><!-- /input-group -->
+        </div><!-- /.col-lg-6 -->
+    </div><!-- /.row -->
+</form>
 
-	    <form action="/booklist" method="POST">
-                <div class="container">
-                    <div class="row" id="searchbar">
-                        <div class="col-lg-12">		    
-                            <input type="text" class="form-control" placeholder="Search for a book here" name="search">
-                            <!-- <input name="searchsubmit" type="image" value="Go" id="searchsubmit" class="btn btn-primary"  /> -->
-                        	<!-- span class="input-group-btn"> -->
-                            	<button class="btn btn-primary" role="button" methods="POST">Go!</button>
-                            <!-- </span>   -->                 
-                        </div>
-
-                    </div>
-                </div>
-             </form>
-
-            <!--This will end up being what flask iterates, adding the list of available books to the page-->
-            <div class="container">
-                <div class="row" id="booklist">
-                    {% for book in listOfBooks %}
-                    <div class="center-block" id="columns">
-                        <div style="display:inline-block;vertical-align:top;">
-                            <p><img src={{book.image}} alt="..." width=200px height=auto></p>
-                        </div>                    
-                            <h3>{{book.book_name}}</h3>
-                            <p>{{ book.description }}</p>
-                            <p>{{ book.price }}</p>
-                           <p><a class = "btn btn-primary" role="button" methods="POST" href="/bookinfo/{{book.book_name}}" action="booklist">Buy now</a></p>
-                    </div>
-                    {% endfor %}
-                </div>
-            </div>
-        {% endblock%}
+<!-- The List of Books -->
+<div class="container">
+    <div class="row">
+    {% for book in listOfBooks %}
+        <div class="col-md-4 col-height col-top" id="booklist"> 
+            <p><img src={{book.image}} alt="..." width=200px height=300px id="book"></p>
+            <h3>{{book.book_name}}</h3>
+            <p>${{book.price}}</p>
+            <p>
+                <a href="/bookinfo/{{book.book_name}}" class="btn btn-primary" role="button" methods="POST" action="booklist">Buy Now</a>
+            </p>  
+        </div>
+        {%endfor%}
+    </div>
+</div>
+{% endblock%}
