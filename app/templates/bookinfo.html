@@ -18,18 +18,16 @@
              </form>
 
             <!--This will end up being what flask iterates, adding the list of available books to the page-->
-            <div class="container"
-                <div class="row" id="booklist">
-                    <div class="center-block" id="columns">
-                        <div style="display:inline-block;vertical-align:top;">
-                            <p><img src={{book.image}} alt="..." width=200px height=auto></p>
-                        </div>                    
-                            <h3>{{book.book_name}}</h3>
-                            <p>{{ book.description }}</p>
-                            <p>{{ book.price }}</p>
-                            <p>{{ book.contact_info }}</p>
-                            <p>{{ book.user_name }}</p>
-                    </div>
+            <div class="post-container">
+                <div class="post-thumb">
+                    <img src={{book.image}} alt="..." width=200px height=auto>
+                    
+                </div>
+                <div class="post-content">  
+                     <h3 class="post-title">{{book.book_name}}</h3>
+                     <p class="post-number">{{ book.price }}</p>
+                     <p>{{ book.description }}</p>                          
+                     <p class="post-caption">{{ book.contact_info }}</p>
                 </div>
             </div>
-        {% endblock%}
+        {% endblock%}   
