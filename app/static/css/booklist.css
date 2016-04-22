@@ -85,20 +85,19 @@ img {
 }
 .post-thumb {
     float: left;
-    margin-left: 8.8em;
+    margin-left: 6.6em;
     margin-right: 4.4em;
     font-size: 250%;
     font-weight: bolder;
 
-    margin-bottom: 25em;
-    margin-top: 3.125em; 
+    margin-bottom: 25em; 
 }
 .post-thumb img {
     display: block
 }
 .post-content {
     margin-left: 4.4em;
-    margin-right: 22.2em;
+    margin-right: 8.8em;
     font-size: 150%;
     font-family: "Open Sans", Roboto, Calibri, "Times New Roman", Serif;
     margin-top: 3.125em;
