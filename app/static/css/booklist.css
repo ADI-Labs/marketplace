@@ -10,10 +10,10 @@ body {
 }
 
 #booklist {
-    border-width: 20px;
+    border-width: 1em;
     text-align: center;
-    padding-top: 30px;
-    padding-bottom: 35px;
+    padding-top: 2em;
+    padding-bottom: 2em;
 }
 
 .caption {
