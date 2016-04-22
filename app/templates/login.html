@@ -30,7 +30,7 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li>
-          <a href="/login" data-toggle="modal" data-target="#myModalLogin">Sign In</a>
+          <a href="#" data-toggle="modal" data-target="#myModalLogin">Sign In</a>
         </li>
         <li>
           <a href="/register" data-toggle="modal" data-target="#myModalRegister">Register</a>
@@ -49,7 +49,7 @@
           <h4 class="modal-title" id="myModalLogin">Sign in with your Columbia e-mail</h4>
         </div>
         <div class="modal-body">
-          <form action="" method="POST" name="form" value="login">
+          <form action="" method="POST" name="form" value="Login">
               {{ form.csrf_token }}
             <div style="padding:0px 20px;">
               <h3>E-mail</h3>
@@ -78,7 +78,7 @@
           <h4 class="modal-title" id="myModalRegister">Register with your Columbia e-mail</h4>
         </div>
         <div class="modal-body">
-          <form action="" method="POST" name="form" value="register">
+          <form action="" method="POST" name="form" value="Register">
               {{ form.csrf_token }}
             <div style="padding:0px 20px;">
               <h3>E-mail</h3>
