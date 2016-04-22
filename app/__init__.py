@@ -161,11 +161,11 @@ def delete(id):
     Book.objects(book_name=id).delete()
     return render_template("delete.html", deleted_book=deleted_book)
 
-
+"""
 for text in Book.objects():
     text.delete()
 for guy in User.objects():
     guy.delete()
-
+"""
 
 app.run(debug=True)
