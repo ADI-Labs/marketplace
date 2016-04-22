@@ -164,7 +164,6 @@ def delete(id):
 
 for text in Book.objects():
     text.delete()
-
 for guy in User.objects():
     guy.delete()
 

@@ -43,4 +43,7 @@ h1 {
 .push-spaces{
     height: 30em;
 }
+textarea {
+    resize: none;
+}
 
