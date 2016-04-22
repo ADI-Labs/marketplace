@@ -9,6 +9,8 @@ from flask.ext.login import LoginManager, login_user, logout_user,\
 login_required, current_user
 from flask import Flask, render_template, redirect, request, url_for,\
 send_from_directory
+from flask_mail import Mail
+from flask_mail import Message
 
 
 app = Flask(__name__)
@@ -28,7 +30,7 @@ UserForm = model_form(User)
 UserForm.password = PasswordField('password')
 
 BookForm = model_form(Book)
-# Push test
+mail = Mail(app)
 
 
 @login_manager.user_loader
@@ -120,6 +122,11 @@ def sell():
     else:
         return render_template("sell.html", form=form)
 
+@app.route("/sendEmail")
+@login_required
+def sendEmail():
+    msg = Message("Hello", sender="ibarrac27@gmail.com",recipients=["cfi2103@columbia.edu"])
+    mail.send(msg)
 
 @app.route("/bookinfo/<id>")
 def bookinfo(id):
