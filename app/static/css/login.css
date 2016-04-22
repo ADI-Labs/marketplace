@@ -1,20 +1,49 @@
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,900);
+
 body {
-	margin-bottom: 50px;
-	background: none;
+  background: 
+    linear-gradient(
+      rgba(0, 0, 0, 0.1),
+      rgba(0, 0, 0, 0.1)
+    ),
+    url(../imgs/columbia.jpg) fixed no-repeat center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  font-family: 'Source Sans Pro', sans-serif;
 }
-.jumbotron {
-	/*background: url(../imgs/columbia.jpg) no-repeat center center fixed; 
+header {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -80%);
+    color: white;
+    text-align: center;
+}
+h1 {
+  text-transform: uppercase;
+  margin: 0;
+  font-size: 3rem;
+  white-space: nowrap;
+}
+
+/*.jumbotron {*/
+    /*background: url(../imgs/columbia.jpg) no-repeat center center fixed; 
     -webkit-background-size: cover;  
     -moz-background-size: cover; 
     -o-background-size: cover; 
     background-size: cover;*/
-    background: url(../imgs/columbia.jpg) no-repeat center center;
+/*    background: url(../imgs/columbia.jpg) fixed no-repeat center center;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-}
+}*/
 .push-spaces{
-	height: 30em;
+    height: 30em;
+}
+textarea {
+    resize: none;
 }
 
