@@ -3,10 +3,18 @@ body {
 	background: none;
 }
 .jumbotron {
-	background: url(../imgs/columbia.jpg) no-repeat center center fixed; 
+	/*background: url(../imgs/columbia.jpg) no-repeat center center fixed; 
     -webkit-background-size: cover;  
     -moz-background-size: cover; 
     -o-background-size: cover; 
-    background-size: cover; 
+    background-size: cover;*/
+    background: url(../imgs/columbia.jpg) no-repeat center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+.push-spaces{
+	height: 30em;
 }
 
