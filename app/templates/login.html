@@ -11,6 +11,10 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 </head>
+<header>
+  <h1> Marketplace </h1>
+</header>
+
 <body>
   <!-- Header and Jumbotron img -->
   <nav class="navbar navbar-inverse navbar-fixed-bottom" role="navigation">
@@ -34,9 +38,6 @@
       </ul>
     </div>
   </nav>
-  <div class="jumbotron">
-    <div class="container push-spaces">
-    </div>
   </div>
 
   <!-- Login Modal -->
@@ -50,15 +51,18 @@
         <div class="modal-body">
           <form action="" method="POST" name="form" value="login">
               {{ form.csrf_token }}
-            <div>
-              <h2>Email</h2>
-              {{ form.name(class="form-control", placeholder="Email") }}
+            <div style="padding:0px 20px;">
+              <h3>E-mail</h3>
+              {{ form.name(class="form-control", placeholder="Enter e-mail") }}
             </div>
-            <div>
-              <h2>Password</h2>
+            <div style="padding:0px 20px;">
+              <h3>Password</h3>
               {{ form.password(class="form-control", placeholder="Password") }}
             </div>
-            <input type="submit" name="form" value="login" class="btn btn-default">
+            <br>
+            <div align="center">
+            <input type="submit" name="form" value="Login" class="btn btn-default">
+            </div>
           </form>
         </div>
       </div>
@@ -76,19 +80,22 @@
         <div class="modal-body">
           <form action="" method="POST" name="form" value="register">
               {{ form.csrf_token }}
-            <div>
-              <h2>Email</h2>
+            <div style="padding:0px 20px;">
+              <h3>Email</h3>
               {{ form.name(class="form-control", placeholder="Email") }}
             </div>
-            <div>
-              <h2>Phone Number</h2>
+            <div style="padding:0px 20px;">
+              <h3>Phone Number</h3>
               {{ form.contact_info(class="form-control", placeholder="Phone Number") }}
             </div>
-            <div>
-              <h2>Password</h2>
+            <div style="padding:0px 20px;">
+              <h3>Password</h3>
               {{ form.password(class="form-control", placeholder="Password") }}
             </div>
-            <input type="submit" name="form" value="register" class="btn btn-default">
+            <br>
+            <div align="center">
+            <input type="submit" name="form" value="Register" class="btn btn-default">
+            </div>
           </form>
         </div>
       </div>
