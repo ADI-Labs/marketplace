@@ -46,14 +46,14 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title" id="myModalLogin">Sign in with your Columbia email</h4>
+          <h4 class="modal-title" id="myModalLogin">Sign in with your Columbia e-mail</h4>
         </div>
         <div class="modal-body">
           <form action="" method="POST" name="form" value="login">
               {{ form.csrf_token }}
             <div style="padding:0px 20px;">
               <h3>E-mail</h3>
-              {{ form.name(class="form-control", placeholder="Enter e-mail") }}
+              {{ form.name(class="form-control", placeholder="Enter e-mail", rows="1") }}
             </div>
             <div style="padding:0px 20px;">
               <h3>Password</h3>
@@ -75,18 +75,18 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title" id="myModalRegister">Register with your Columbia email</h4>
+          <h4 class="modal-title" id="myModalRegister">Register with your Columbia e-mail</h4>
         </div>
         <div class="modal-body">
           <form action="" method="POST" name="form" value="register">
               {{ form.csrf_token }}
             <div style="padding:0px 20px;">
-              <h3>Email</h3>
-              {{ form.name(class="form-control", placeholder="Email") }}
+              <h3>E-mail</h3>
+              {{ form.name(class="form-control", placeholder="Enter e-mail", rows="1") }}
             </div>
             <div style="padding:0px 20px;">
               <h3>Phone Number</h3>
-              {{ form.contact_info(class="form-control", placeholder="Phone Number") }}
+              {{ form.contact_info(class="form-control", placeholder="Phone number", rows="1") }}
             </div>
             <div style="padding:0px 20px;">
               <h3>Password</h3>
