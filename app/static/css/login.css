@@ -8,7 +8,7 @@ body {
     -moz-background-size: cover; 
     -o-background-size: cover; 
     background-size: cover;*/
-    background: url(../imgs/columbia.jpg) no-repeat center center;
+    background: url(../imgs/columbia.jpg) fixed no-repeat center center;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
