@@ -29,4 +29,7 @@ h1 {
   font-size: 4rem;
   white-space: nowrap;
 }
+textarea {
+  resize: none;
+}
 
