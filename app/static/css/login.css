@@ -3,8 +3,8 @@
 body {
   background: 
     linear-gradient(
-      rgba(0, 0, 0, 0.1),
-      rgba(0, 0, 0, 0.1)
+      rgba(0, 0, 0, 0.3),
+      rgba(0, 0, 0, 0.3)
     ),
     url(../imgs/columbia.jpg) fixed no-repeat center center;
   -webkit-background-size: cover;
@@ -20,11 +20,13 @@ header {
     transform: translate(-50%, -80%);
     color: white;
     text-align: center;
+    font-family: 'Times New Roman', serif;
+
 }
 h1 {
-  text-transform: uppercase;
+  text-transform: none;
   margin: 0;
-  font-size: 3rem;
+  font-size: 4rem;
   white-space: nowrap;
 }
 
